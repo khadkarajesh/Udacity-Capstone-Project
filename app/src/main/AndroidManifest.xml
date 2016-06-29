@@ -20,8 +20,10 @@
         </activity>
         <activity
             android:name=".LoginActivity"
-            android:theme="@style/AppTheme.WindowBackground">
-        </activity>
+            android:theme="@style/AppTheme.WindowBackground"/>
+        <activity
+            android:name=".SignUpActivity"
+            android:theme="@style/AppTheme.WindowBackground"/>
     </application>
 
 </manifest>
