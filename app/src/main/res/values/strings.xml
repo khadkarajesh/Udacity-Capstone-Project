@@ -21,4 +21,5 @@
     <string name="valid_email_address_msg">Enter valid email address</string>
     <string name="password_length_message">Password must be of length 5</string>
     <string name="password_doesnt_match">Password doesn\'t match</string>
+    <string name="get_started">Get Started</string>
 </resources>

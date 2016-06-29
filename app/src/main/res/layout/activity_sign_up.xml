@@ -48,7 +48,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/ic_locked"
-                android:hint="Password"/>
+                android:hint="Password"
+                android:inputType="textPassword"/>
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
@@ -60,7 +61,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/ic_locked"
-                android:hint="Confirm Password"/>
+                android:hint="Confirm Password"
+                android:inputType="textPassword"/>
         </android.support.design.widget.TextInputLayout>
 
         <Button
@@ -71,9 +73,9 @@
             android:layout_marginRight="@dimen/sign_up_btn"
             android:layout_marginTop="@dimen/dimen_8x2"
             android:background="@color/colorPrimary"
-            android:textColor="@android:color/white"
             android:clickable="true"
-            android:text="Get Started"/>
+            android:text="@string/get_started"
+            android:textColor="@android:color/white"/>
     </LinearLayout>
 
 

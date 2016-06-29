@@ -37,7 +37,6 @@ public class SignUpActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         mAuth = FirebaseAuth.getInstance();
-
     }
 
     @OnClick(R.id.btn_create_user)
