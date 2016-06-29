@@ -31,6 +31,10 @@ import butterknife.OnClick;
 public class LoginActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
     public static final int GOOGLE_SIGN_IN_CODE = 5000;
     private static final String TAG = LoginActivity.class.getSimpleName();
+    @Bind(R.id.btn_facebook_login)
+    Button btnFacebookLogin;
+    @Bind(R.id.btn_google_login)
+    Button btnGoogleLogin;
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
     private GoogleApiClient mGoogleApiClient;
@@ -135,7 +139,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         }
     }
 
-    @OnClick({R.id.btn_facebook_login, R.id.btn_google_login, R.id.sign_up})
+    @OnClick({R.id.btn_facebook_login, R.id.btn_google_login, R.id.sign_up,R.id.login})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_facebook_login:
@@ -146,6 +150,46 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
             case R.id.sign_up:
                 startActivity(new Intent(this, SignUpActivity.class));
                 break;
+            case R.id.login:
+                loginUser();
+                break;
         }
+    }
+
+    private void loginUser() {
+        View focusView = null;
+        boolean valid = true;
+        String usernameValue = username.getText().toString().trim();
+        String passwordValue = password.getText().toString().trim();
+        if (usernameValue.isEmpty()) {
+            username.setError(getString(R.string.empty_msg));
+            valid = false;
+            focusView = username;
+        }
+
+        if (passwordValue.isEmpty() || passwordValue.length() <= 5) {
+            password.setError(getString(R.string.valid_password));
+            valid = false;
+            focusView = password;
+        }
+
+        if (valid) {
+            loginViaEmail(usernameValue, passwordValue);
+        } else {
+            focusView.requestFocus();
+        }
+    }
+
+    private void loginViaEmail(String username, String password) {
+        mAuth.signInWithEmailAndPassword(username, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful()) {
+                    startActivity(DashBoardActivity.getLaunchIntent(LoginActivity.this));
+                } else {
+                    Toast.makeText(LoginActivity.this, "Couldn't login", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 }

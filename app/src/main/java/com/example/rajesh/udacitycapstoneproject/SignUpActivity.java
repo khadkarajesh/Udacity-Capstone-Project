@@ -66,7 +66,7 @@ public class SignUpActivity extends AppCompatActivity {
             password.setError(getString(R.string.empty_msg));
             focusView = password;
             valid = false;
-        } else if (passwordValue.length() <= 4) {
+        } else if (passwordValue.length() <= 5) {
             password.setError(getString(R.string.password_length_message));
             focusView = password;
             valid = false;
@@ -90,7 +90,7 @@ public class SignUpActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (!task.isSuccessful()) {
-                    Toast.makeText(SignUpActivity.this, "failed to complete task", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SignUpActivity.this, "failed to complete task "+task.getException(), Toast.LENGTH_SHORT).show();
                 } else {
                     startActivity(DashBoardActivity.getLaunchIntent(SignUpActivity.this));
                 }

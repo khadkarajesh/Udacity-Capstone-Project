@@ -19,7 +19,8 @@
     <string name="signup">SignUp</string>
     <string name="empty_msg">Enter valid data</string>
     <string name="valid_email_address_msg">Enter valid email address</string>
-    <string name="password_length_message">Password must be of length 5</string>
+    <string name="password_length_message">Password must be of length 6</string>
     <string name="password_doesnt_match">Password doesn\'t match</string>
     <string name="get_started">Get Started</string>
+    <string name="valid_password">Enter valid password</string>
 </resources>
