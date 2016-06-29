@@ -34,6 +34,7 @@
         android:orientation="horizontal">
 
         <Button
+            android:id="@+id/btn_facebook_login"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginRight="@dimen/dimen_8x1"
@@ -44,6 +45,7 @@
             android:textColor="@android:color/white"/>
 
         <Button
+            android:id="@+id/btn_google_login"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -93,11 +95,13 @@
         android:orientation="vertical">
 
         <EditText
+            android:id="@+id/username"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/username"/>
 
         <EditText
+            android:id="@+id/password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/password"/>
@@ -105,6 +109,7 @@
     </LinearLayout>
 
     <Button
+        android:id="@+id/login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary"
@@ -129,6 +134,7 @@
         android:textColor="@android:color/white"/>
 
     <Button
+        android:id="@+id/sign_up"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/light_yellow"

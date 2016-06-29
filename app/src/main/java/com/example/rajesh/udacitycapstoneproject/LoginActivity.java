@@ -5,6 +5,9 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.android.gms.auth.api.Auth;
@@ -21,6 +24,10 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
 public class LoginActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
     public static final int GOOGLE_SIGN_IN_CODE = 5000;
     private static final String TAG = LoginActivity.class.getSimpleName();
@@ -28,10 +35,25 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
     private FirebaseAuth.AuthStateListener mAuthListener;
     private GoogleApiClient mGoogleApiClient;
 
+    @Bind(R.id.username)
+    EditText username;
+
+    @Bind(R.id.password)
+    EditText password;
+
+    @Bind(R.id.login)
+    Button login;
+
+    @Bind(R.id.sign_up)
+    Button signUp;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        ButterKnife.bind(this);
 
         mAuth = FirebaseAuth.getInstance();
         mAuthListener = new FirebaseAuth.AuthStateListener() {
@@ -60,7 +82,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                 .build();
     }
 
-    private void signIn() {
+    private void googleSignIn() {
         Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
         startActivityForResult(signInIntent, GOOGLE_SIGN_IN_CODE);
     }
@@ -68,38 +90,27 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
         if (requestCode == GOOGLE_SIGN_IN_CODE) {
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
             if (result.isSuccess()) {
-                // Google Sign In was successful, authenticate with Firebase
                 GoogleSignInAccount account = result.getSignInAccount();
-                Log.d(TAG, "onActivityResult: token " + account.getIdToken());
                 fireBaseAuthWithGoogle(account);
             } else {
-                // Google Sign In failed, update UI appropriately
-                // ...
             }
         }
     }
 
     private void fireBaseAuthWithGoogle(GoogleSignInAccount acct) {
-        Log.d(TAG, "fire base AuthWithGoogle:" + acct.getId());
-
         AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
         mAuth.signInWithCredential(credential)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        Log.d(TAG, "signInWithCredential:onComplete:" + task.isSuccessful());
-
-                        // If sign in fails, display a message to the user. If sign in succeeds
-                        // the auth state listener will be notified and logic to handle the
-                        // signed in user can be handled in the listener.
                         if (!task.isSuccessful()) {
-                            Log.w(TAG, "signInWithCredential", task.getException());
                             Toast.makeText(LoginActivity.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
+                        } else {
+                            startActivity(DashBoardActivity.getLaunchIntent(LoginActivity.this));
                         }
                     }
                 });
@@ -121,6 +132,20 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         super.onStop();
         if (mAuthListener != null) {
             mAuth.removeAuthStateListener(mAuthListener);
+        }
+    }
+
+    @OnClick({R.id.btn_facebook_login, R.id.btn_google_login, R.id.sign_up})
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.btn_facebook_login:
+                break;
+            case R.id.btn_google_login:
+                googleSignIn();
+                break;
+            case R.id.sign_up:
+                startActivity(new Intent(this, SignUpActivity.class));
+                break;
         }
     }
 }

@@ -1,5 +1,6 @@
 package com.example.rajesh.udacitycapstoneproject;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -23,8 +24,6 @@ public class DashBoardActivity extends AppCompatActivity
         setContentView(R.layout.activity_dash_board);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        startActivity(new Intent(this, LoginActivity.class));
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -100,5 +99,10 @@ public class DashBoardActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public static Intent getLaunchIntent(Context context) {
+        Intent intent = new Intent(context, DashBoardActivity.class);
+        return intent;
     }
 }
