@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "135696297368",
+    "firebase_url": "https://expensetracker-8f326.firebaseio.com",
+    "project_id": "expensetracker-8f326",
+    "storage_bucket": "expensetracker-8f326.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:135696297368:android:0c573bc49380232d",
+        "android_client_info": {
+          "package_name": "com.example.rajesh.udacitycapstoneproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "135696297368-sdi3k2f255kc0na8vqg3fq5gg3uaoctu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.rajesh.udacitycapstoneproject",
+            "certificate_hash": "CDAE831A9B6E149F88B69E1F6563545B3A685289"
+          }
+        },
+        {
+          "client_id": "135696297368-4c0q5d0koe2ae81n6gqfbkbqqdck6nb9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAoUohVNDbeulXxyENq3d-vzUoZ5uo-bgI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "135696297368-4c0q5d0koe2ae81n6gqfbkbqqdck6nb9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
