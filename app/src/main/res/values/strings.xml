@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">UdacityCapstoneProject</string>
     <string name="google_web_client_id">135696297368-4c0q5d0koe2ae81n6gqfbkbqqdck6nb9.apps.googleusercontent.com</string>
+    <string name="facebook_app_id">1103952132977263</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
