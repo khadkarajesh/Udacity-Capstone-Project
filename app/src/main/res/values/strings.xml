@@ -1,8 +1,27 @@
 <resources>
     <string name="app_name">UdacityCapstoneProject</string>
+    <string name="google_web_client_id">135696297368-4c0q5d0koe2ae81n6gqfbkbqqdck6nb9.apps.googleusercontent.com</string>
+    <string name="facebook_app_id">1103952132977263</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
+    <string name="app_title">Expense Tracker</string>
+    <string name="login_using">Login Using</string>
+    <string name="facebook">Facebook</string>
+    <string name="google">Google</string>
+    <string name="or">OR</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="forgot_your_password">Forgot your password?</string>
+    <string name="don_t_have_an_account">Don\'t have an Account ?</string>
+    <string name="signup">SignUp</string>
+    <string name="empty_msg">Enter valid data</string>
+    <string name="valid_email_address_msg">Enter valid email address</string>
+    <string name="password_length_message">Password must be of length 6</string>
+    <string name="password_doesnt_match">Password doesn\'t match</string>
+    <string name="get_started">Get Started</string>
+    <string name="valid_password">Enter valid password</string>
 </resources>
