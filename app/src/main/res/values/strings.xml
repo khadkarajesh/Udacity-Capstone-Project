@@ -5,4 +5,15 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
+    <string name="app_title">Expense Tracker</string>
+    <string name="login_using">Login Using</string>
+    <string name="facebook">Facebook</string>
+    <string name="google">Google</string>
+    <string name="or">OR</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="forgot_your_password">Forgot your password?</string>
+    <string name="don_t_have_an_account">Don\'t have an Account ?</string>
+    <string name="signup">SignUp</string>
 </resources>
