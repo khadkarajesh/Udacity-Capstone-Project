@@ -2,10 +2,13 @@ package com.example.rajesh.udacitycapstoneproject;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -15,14 +18,22 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
+import butterknife.ButterKnife;
 
 public class DashBoardActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private static final String TAG = DashBoardActivity.class.getSimpleName();
+    private ImageView profilePic;
+    private FirebaseUser firebaseUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,9 +43,9 @@ public class DashBoardActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
 
         FirebaseAuth auth = FirebaseAuth.getInstance();
-        FirebaseUser firebaseUser = auth.getCurrentUser();
+        firebaseUser = auth.getCurrentUser();
 
-        Log.d(TAG, "onCreate: "+firebaseUser.getDisplayName());
+        Log.d(TAG, "onCreate: " + firebaseUser.getDisplayName());
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -53,6 +64,18 @@ public class DashBoardActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        setUserProfile(navigationView);
+    }
+
+    private void setUserProfile(NavigationView navigationView) {
+        View view = navigationView.getHeaderView(0);
+        profilePic = ButterKnife.findById(view, R.id.imageView);
+        TextView txtUserName = ButterKnife.findById(view, R.id.txt_username);
+        txtUserName.setText(firebaseUser.getDisplayName());
+        TextView txtEmail = ButterKnife.findById(view, R.id.txt_email);
+        txtEmail.setText(firebaseUser.getEmail().toString());
+        setCircularProfileImageToNavHeader(firebaseUser.getPhotoUrl().toString());
     }
 
     @Override
@@ -115,5 +138,26 @@ public class DashBoardActivity extends AppCompatActivity
     public static Intent getLaunchIntent(Context context) {
         Intent intent = new Intent(context, DashBoardActivity.class);
         return intent;
+    }
+
+    /**
+     * Use glide to make the profile image circular
+     *
+     * @param imageUrl source image Url
+     */
+    private void setCircularProfileImageToNavHeader(String imageUrl) {
+        Glide.with(DashBoardActivity.this).load(imageUrl)
+                .asBitmap().override(200, 200)
+                .error(R.drawable.ic_no_avatar)
+                .placeholder(R.drawable.ic_no_avatar)
+                .into(new BitmapImageViewTarget(profilePic) {
+                    @Override
+                    protected void setResource(Bitmap resource) {
+                        RoundedBitmapDrawable circularBitmapDrawable =
+                                RoundedBitmapDrawableFactory.create(DashBoardActivity.this.getResources(), resource);
+                        circularBitmapDrawable.setCircular(true);
+                        profilePic.setImageDrawable(circularBitmapDrawable);
+                    }
+                });
     }
 }
