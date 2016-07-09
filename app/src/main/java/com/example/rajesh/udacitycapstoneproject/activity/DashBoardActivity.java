@@ -1,4 +1,4 @@
-package com.example.rajesh.udacitycapstoneproject;
+package com.example.rajesh.udacitycapstoneproject.activity;
 
 import android.content.Context;
 import android.content.Intent;
@@ -23,6 +23,8 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
+import com.example.rajesh.udacitycapstoneproject.R;
+import com.example.rajesh.udacitycapstoneproject.category.CategoryEditActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -66,6 +68,9 @@ public class DashBoardActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         setUserProfile(navigationView);
+
+
+        startActivity(CategoryEditActivity.getLaunchIntent(this, "20"));
     }
 
     private void setUserProfile(NavigationView navigationView) {
@@ -75,7 +80,7 @@ public class DashBoardActivity extends AppCompatActivity
         txtUserName.setText(firebaseUser.getDisplayName());
         TextView txtEmail = ButterKnife.findById(view, R.id.txt_email);
         txtEmail.setText(firebaseUser.getEmail().toString());
-        setCircularProfileImageToNavHeader(firebaseUser.getPhotoUrl().toString());
+//        setCircularProfileImageToNavHeader(firebaseUser.getPhotoUrl().toString());
     }
 
     @Override

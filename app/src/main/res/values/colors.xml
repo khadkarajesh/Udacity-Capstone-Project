@@ -7,4 +7,5 @@
     <color name="buttonFacebook">#3B5998</color>
     <color name="buttonGooglePlus">#DD4B39</color>
     <color name="light_yellow">#ffb211</color>
+    <color name="toolbar_background_color">#26FFFFFF</color>
 </resources>
