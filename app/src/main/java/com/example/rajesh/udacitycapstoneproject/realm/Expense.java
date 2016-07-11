@@ -13,6 +13,7 @@ public class Expense extends RealmObject {
     private Double amount;
     private String description;
     private String type;
+    private ExpenseCategories expenseCategories;
 
     public Double getExpenseAmount() {
         return amount;
@@ -60,5 +61,13 @@ public class Expense extends RealmObject {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public ExpenseCategories getExpenseCategories() {
+        return expenseCategories;
+    }
+
+    public void setExpenseCategories(ExpenseCategories expenseCategories) {
+        this.expenseCategories = expenseCategories;
     }
 }

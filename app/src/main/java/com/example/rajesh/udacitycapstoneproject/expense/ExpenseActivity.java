@@ -190,7 +190,6 @@ public class ExpenseActivity extends ToolbarBaseActivity {
     }
 
     private void updateExpense(String expenseTitle, String expenseDescription, String expenseAmount) {
-        Timber.d("update expense was called type %s",swhExpenseType.isChecked() ? Constant.RECURRING_TYPE : Constant.NON_RECURRING_TYPE);
         Expense expense = getExpenseById(expenseId);
         mRealm.beginTransaction();
         expense.setExpenseTitle(expenseTitle);
@@ -212,6 +211,8 @@ public class ExpenseActivity extends ToolbarBaseActivity {
         expense.setExpenseType(swhExpenseType.isChecked() ? Constant.RECURRING_TYPE : Constant.NON_RECURRING_TYPE);
 
         ExpenseCategories expenseCategories = mRealm.where(ExpenseCategories.class).equalTo(RealmTable.ID, categoryId).findFirst();
+        expense.setExpenseCategories(expenseCategories);
+
         expenseCategories.getExpenses().add(expense);
 
         mRealm.commitTransaction();

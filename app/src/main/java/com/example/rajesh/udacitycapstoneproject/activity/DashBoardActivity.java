@@ -82,7 +82,7 @@ public class DashBoardActivity extends AppCompatActivity
         addFragment(new CategoryFragment(), Constant.FragmentTag.CATEGORY_FRAGMENT);
 
 
-        startActivity(ExpenseActivity.getLaunchIntent(this, null));
+        startActivity(ExpenseActivity.getLaunchIntent(this, "1"));
         //startActivity(CategoryEditActivity.getLaunchIntent(this, null));
     }
 
