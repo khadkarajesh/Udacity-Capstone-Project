@@ -11,4 +11,32 @@
     <dimen name="dimen_8x2">16dp</dimen>
     <dimen name="dimen_8x4">32dp</dimen>
     <dimen name="sign_up_btn">80dp</dimen>
+    <dimen name="flat_button_min_width">88dp</dimen>
+
+
+    <!-- Material design dimen -->
+    <dimen name="dimen_0x">0dp</dimen>
+    <dimen name="dimen_1x">8dp</dimen>
+    <dimen name="dimen_2x">16dp</dimen>
+    <dimen name="dimen_3x">24dp</dimen>
+    <dimen name="dimen_4x">32dp</dimen>
+    <dimen name="dimen_5x">40dp</dimen>
+    <dimen name="dimen_6x">48dp</dimen>
+    <dimen name="dimen_7x">56dp</dimen>
+    <dimen name="dimen_8x">64dp</dimen>
+    <dimen name="dimen_9x">72dp</dimen>
+    <dimen name="dimen_10x">80dp</dimen>
+
+    <dimen name="dimen_2x1">2dp</dimen>
+    <dimen name="dimen_3x1">3dp</dimen>
+    <dimen name="dimen_4x1">4dp</dimen>
+    <dimen name="dimen_6x1">6dp</dimen>
+    <dimen name="dimen_10x1">10dp</dimen>
+    <dimen name="dimen_10x3">30dp</dimen>
+    <dimen name="dimen_10x5">50dp</dimen>
+    <dimen name="dimen_10x6">60dp</dimen>
+    <dimen name="dimen_negative_4x1">-4dp</dimen>
+    <dimen name="dimen_1x1">1dp</dimen>
+    <dimen name="dimen_22x10">220dp</dimen>
+    <dimen name="dimen_3x100">300dp</dimen>
 </resources>

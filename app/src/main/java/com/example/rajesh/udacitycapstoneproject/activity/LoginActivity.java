@@ -1,4 +1,4 @@
-package com.example.rajesh.udacitycapstoneproject;
+package com.example.rajesh.udacitycapstoneproject.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.rajesh.udacitycapstoneproject.R;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
