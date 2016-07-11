@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.ColorInt;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -25,7 +24,6 @@ import timber.log.Timber;
 
 
 public class CategoryEditActivity extends ToolbarBaseActivity {
-    private static final String TAG = CategoryEditActivity.class.getSimpleName();
     private String toolbarTitle;
 
     private static final String ADD_CATEGORY = "Add Category";

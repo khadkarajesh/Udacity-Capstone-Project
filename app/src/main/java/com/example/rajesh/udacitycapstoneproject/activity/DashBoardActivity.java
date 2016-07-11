@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v4.view.GravityCompat;
@@ -14,7 +15,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -23,8 +23,9 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
+import com.example.rajesh.udacitycapstoneproject.Constant;
 import com.example.rajesh.udacitycapstoneproject.R;
-import com.example.rajesh.udacitycapstoneproject.category.CategoryEditActivity;
+import com.example.rajesh.udacitycapstoneproject.category.CategoryFragment;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -37,6 +38,15 @@ public class DashBoardActivity extends AppCompatActivity
     private ImageView profilePic;
     private FirebaseUser firebaseUser;
 
+    Toolbar toolbar;
+    String toolbarTitle = null;
+
+    private static final String ACCOUNTS_TITLE = "Accounts";
+    private static final String CATEGORIES_TITLE = "Categories";
+    private static final String HISTORY_AND_REPORT_TITLE = "History / Report";
+    private static final String RECURRING_EXPENSE_TITLE = "Recurring Expense";
+    private static final String DASHBOARD_TITLE = "Dashboard";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,7 +57,6 @@ public class DashBoardActivity extends AppCompatActivity
         FirebaseAuth auth = FirebaseAuth.getInstance();
         firebaseUser = auth.getCurrentUser();
 
-        Log.d(TAG, "onCreate: " + firebaseUser.getDisplayName());
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -69,8 +78,10 @@ public class DashBoardActivity extends AppCompatActivity
 
         setUserProfile(navigationView);
 
+        addFragment(new CategoryFragment(), Constant.FragmentTag.CATEGORY_FRAGMENT);
 
-        startActivity(CategoryEditActivity.getLaunchIntent(this, "20"));
+
+        //startActivity(CategoryEditActivity.getLaunchIntent(this, "20"));
     }
 
     private void setUserProfile(NavigationView navigationView) {
@@ -113,21 +124,42 @@ public class DashBoardActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
+        Fragment fragment = null;
+        String fragmentTag = null;
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
+        switch (id) {
+           /* case R.id.nav_account:
+                fragment = new AccountFragment();
+                fragmentTag = "NewFragment";
+                toolbarTitle = ACCOUNTS_TITLE;
+                break;*/
+            case R.id.nav_categories:
+                fragment = new CategoryFragment();
+                fragmentTag = Constant.FragmentTag.CATEGORY_FRAGMENT;
+                toolbarTitle = CATEGORIES_TITLE;
+                break;
+         /*   case R.id.nav_history_report:
+                fragment = new ReportFragment();
+                fragmentTag = Constant.FragmentTag.REPORT_FRAGMENT;
+                toolbarTitle = HISTORY_AND_REPORT_TITLE;
+                break;
+            case R.id.nav_recurring_expense:
+                fragment = new RecurringFragment();
+                fragmentTag = Constant.FragmentTag.EXPENSE_FRAGMENT;
+                toolbarTitle = RECURRING_EXPENSE_TITLE;
+                break;
+            case R.id.nav_settings:
+                break;
+            case R.id.nav_dashboard:
+                fragment = new DashBoardFragment();
+                fragmentTag = Constant.FragmentTag.DASHBOARD_FRAGMENT_TAG;
+                toolbarTitle = DASHBOARD_TITLE;
+                break;*/
+            default:
+                break;
         }
-
+        addFragment(fragment, fragmentTag);
+        getSupportActionBar().setTitle(toolbarTitle);
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
@@ -157,5 +189,9 @@ public class DashBoardActivity extends AppCompatActivity
                         profilePic.setImageDrawable(circularBitmapDrawable);
                     }
                 });
+    }
+
+    private void addFragment(Fragment fragment, String tag) {
+        getSupportFragmentManager().beginTransaction().replace(R.id.ll_dashboard_wrapper, fragment, tag).commit();
     }
 }
