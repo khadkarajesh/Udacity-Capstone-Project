@@ -1,12 +1,15 @@
 package com.example.rajesh.udacitycapstoneproject.realm;
 
+import io.realm.RealmList;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
 public class ExpenseCategories extends RealmObject {
-    @PrimaryKey private int id;
+    @PrimaryKey
+    private int id;
     private String categoriesName;
     private String categoriesColor;
+    private RealmList<Expense> expenses;
 
     public String getCategoriesColor() {
         return categoriesColor;
@@ -30,5 +33,13 @@ public class ExpenseCategories extends RealmObject {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public RealmList<Expense> getExpenses() {
+        return expenses;
+    }
+
+    public void setExpenses(RealmList<Expense> expenses) {
+        this.expenses = expenses;
     }
 }

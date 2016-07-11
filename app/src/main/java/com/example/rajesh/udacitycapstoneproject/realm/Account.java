@@ -7,41 +7,41 @@ import io.realm.annotations.PrimaryKey;
 
 public class Account extends RealmObject {
     @PrimaryKey private long id;
-    private String accountTitle;
-    private Date dateCreated;
-    private Double accountAmount;
-    private String accountType;
+    private String title;
+    private Date date;
+    private Double amount;
+    private String type;
 
     public Double getAccountAmount() {
-        return accountAmount;
+        return amount;
     }
 
     public void setAccountAmount(Double accountAmount) {
-        this.accountAmount = accountAmount;
+        this.amount = accountAmount;
     }
 
-    public String getAccountTitle() {
-        return accountTitle;
+    public String getTitle() {
+        return title;
     }
 
-    public void setAccountTitle(String accountTitle) {
-        this.accountTitle = accountTitle;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getAccountType() {
-        return accountType;
+        return type;
     }
 
     public void setAccountType(String accountType) {
-        this.accountType = accountType;
+        this.type = accountType;
     }
 
     public Date getDateCreated() {
-        return dateCreated;
+        return date;
     }
 
     public void setDateCreated(Date dateCreated) {
-        this.dateCreated = dateCreated;
+        this.date = dateCreated;
     }
 
     public long getId() {

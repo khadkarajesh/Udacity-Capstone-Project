@@ -14,6 +14,8 @@ import com.example.rajesh.udacitycapstoneproject.CustomToolbar;
 import com.example.rajesh.udacitycapstoneproject.R;
 import com.example.rajesh.udacitycapstoneproject.base.activity.ToolbarBaseActivity;
 import com.example.rajesh.udacitycapstoneproject.realm.ExpenseCategories;
+import com.example.rajesh.udacitycapstoneproject.realm.table.RealmTable;
+import com.example.rajesh.udacitycapstoneproject.utils.ActivityState;
 
 import butterknife.Bind;
 import butterknife.OnClick;
@@ -28,7 +30,6 @@ public class CategoryEditActivity extends ToolbarBaseActivity {
 
     private static final String ADD_CATEGORY = "Add Category";
     private static final String EDIT_CATEGORY = "Edit Category";
-    private static final String ID = "id";
     private static final int FIRST_DATA_ITEM_ID = 1;
     private static final int ID_INCREMENTER = 1;
 
@@ -44,14 +45,6 @@ public class CategoryEditActivity extends ToolbarBaseActivity {
     private String expenseCategoryId;
     private String hexColor = "#ff08f0";
     private ActivityState activityState = null;
-
-    @OnClick(R.id.iv_color_picker)
-    public void onClick() {
-    }
-
-    public enum ActivityState {
-        ADD, UPDATE
-    }
 
     Realm mRealm;
 
@@ -107,7 +100,6 @@ public class CategoryEditActivity extends ToolbarBaseActivity {
             if (activityState == ActivityState.ADD) {
                 insertCategory(expenseCategory, getPickerColor());
             } else {
-                Timber.d("called here");
                 updateCategory(expenseCategory, getPickerColor());
             }
         }
@@ -128,7 +120,6 @@ public class CategoryEditActivity extends ToolbarBaseActivity {
     }
 
     private void updateCategory(String expenseCategory, String categoryColor) {
-        Timber.d("update category expense");
         ExpenseCategories expenseCategories = getExpenseCategoryById(expenseCategoryId);
         mRealm.beginTransaction();
         expenseCategories.setCategoriesColor(categoryColor);
@@ -149,10 +140,10 @@ public class CategoryEditActivity extends ToolbarBaseActivity {
 
 
     private int getNextCategoryId() {
-        if (mRealm.where(ExpenseCategories.class).max(ID) == null) {
+        if (mRealm.where(ExpenseCategories.class).max(RealmTable.ID) == null) {
             return FIRST_DATA_ITEM_ID;
         } else {
-            return mRealm.where(ExpenseCategories.class).max(ID).intValue() + ID_INCREMENTER;
+            return mRealm.where(ExpenseCategories.class).max(RealmTable.ID).intValue() + ID_INCREMENTER;
         }
     }
 
@@ -182,7 +173,7 @@ public class CategoryEditActivity extends ToolbarBaseActivity {
     }
 
     private ExpenseCategories getExpenseCategoryById(String id) {
-        ExpenseCategories expenseCategories = mRealm.where(ExpenseCategories.class).equalTo("id", Integer.parseInt(id)).findFirst();
+        ExpenseCategories expenseCategories = mRealm.where(ExpenseCategories.class).equalTo(RealmTable.ID, Integer.parseInt(id)).findFirst();
         return expenseCategories;
     }
 

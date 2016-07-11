@@ -27,4 +27,7 @@
     <string name="start_action_button">start action button</string>
     <string name="empty_catgory_message">Enter valid category name</string>
     <string name="color_picker_dialog">color_picker_dialog</string>
+    <string name="msg_valid_date">Enter valid date</string>
+    <string name="msg_empty_field">Can\'t be empty</string>
+    <string name="msg_empty_amount">Expense amount can\'t be empty</string>
 </resources>
