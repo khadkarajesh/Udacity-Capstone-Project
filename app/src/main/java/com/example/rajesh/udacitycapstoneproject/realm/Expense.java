@@ -6,60 +6,53 @@ import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
 public class Expense extends RealmObject {
-    @PrimaryKey private long id;
-    private Date expenseDate;
-    private String expenseTitle;
-    private Double expenseAmount;
-    private String expenseDescription;
-    private String expenseType;
-    private long expenseCategoriesId;
+    @PrimaryKey
+    private long id;
+    private Date date;
+    private String title;
+    private Double amount;
+    private String description;
+    private String type;
+    private ExpenseCategories expenseCategories;
 
     public Double getExpenseAmount() {
-        return expenseAmount;
+        return amount;
     }
 
     public void setExpenseAmount(Double expenseAmount) {
-        this.expenseAmount = expenseAmount;
-    }
-
-    public long getExpenseCategoriesId() {
-        return expenseCategoriesId;
-    }
-
-    public void setExpenseCategoriesId(long expenseCategoriesId) {
-        this.expenseCategoriesId = expenseCategoriesId;
+        this.amount = expenseAmount;
     }
 
     public Date getExpenseDate() {
-        return expenseDate;
+        return date;
     }
 
     public void setExpenseDate(Date expenseDate) {
-        this.expenseDate = expenseDate;
+        this.date = expenseDate;
     }
 
     public String getExpenseDescription() {
-        return expenseDescription;
+        return description;
     }
 
     public void setExpenseDescription(String expenseDescription) {
-        this.expenseDescription = expenseDescription;
+        this.description = expenseDescription;
     }
 
     public String getExpenseTitle() {
-        return expenseTitle;
+        return title;
     }
 
     public void setExpenseTitle(String expenseTitle) {
-        this.expenseTitle = expenseTitle;
+        this.title = expenseTitle;
     }
 
     public String getExpenseType() {
-        return expenseType;
+        return type;
     }
 
     public void setExpenseType(String expenseType) {
-        this.expenseType = expenseType;
+        this.type = expenseType;
     }
 
     public long getId() {
@@ -68,5 +61,13 @@ public class Expense extends RealmObject {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public ExpenseCategories getExpenseCategories() {
+        return expenseCategories;
+    }
+
+    public void setExpenseCategories(ExpenseCategories expenseCategories) {
+        this.expenseCategories = expenseCategories;
     }
 }

@@ -26,6 +26,7 @@ import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.example.rajesh.udacitycapstoneproject.Constant;
 import com.example.rajesh.udacitycapstoneproject.R;
 import com.example.rajesh.udacitycapstoneproject.category.CategoryFragment;
+import com.example.rajesh.udacitycapstoneproject.expense.recurring.RecurringFragment;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -78,10 +79,12 @@ public class DashBoardActivity extends AppCompatActivity
 
         setUserProfile(navigationView);
 
-        addFragment(new CategoryFragment(), Constant.FragmentTag.CATEGORY_FRAGMENT);
+        //addFragment(new CategoryFragment(), Constant.FragmentTag.CATEGORY_FRAGMENT);
+        addFragment(new RecurringFragment(), Constant.FragmentTag.EXPENSE_FRAGMENT);
 
 
-        //startActivity(CategoryEditActivity.getLaunchIntent(this, "20"));
+        //startActivity(ExpenseActivity.getLaunchIntent(this, null));
+        //startActivity(CategoryEditActivity.getLaunchIntent(this, null));
     }
 
     private void setUserProfile(NavigationView navigationView) {
@@ -142,12 +145,13 @@ public class DashBoardActivity extends AppCompatActivity
                 fragment = new ReportFragment();
                 fragmentTag = Constant.FragmentTag.REPORT_FRAGMENT;
                 toolbarTitle = HISTORY_AND_REPORT_TITLE;
-                break;
+                break;*/
             case R.id.nav_recurring_expense:
                 fragment = new RecurringFragment();
                 fragmentTag = Constant.FragmentTag.EXPENSE_FRAGMENT;
                 toolbarTitle = RECURRING_EXPENSE_TITLE;
                 break;
+            /*
             case R.id.nav_settings:
                 break;
             case R.id.nav_dashboard:

@@ -12,6 +12,7 @@ import android.view.View;
 import com.example.rajesh.udacitycapstoneproject.R;
 import com.example.rajesh.udacitycapstoneproject.base.frament.BaseFragment;
 import com.example.rajesh.udacitycapstoneproject.realm.ExpenseCategories;
+import com.example.rajesh.udacitycapstoneproject.realm.table.RealmTable;
 
 import butterknife.Bind;
 import io.realm.Realm;
@@ -73,7 +74,7 @@ public class CategoryFragment extends BaseFragment {
 
     private void deleteItem(final int id) {
         mRealm.beginTransaction();
-        ExpenseCategories expenseCategories = mRealm.where(ExpenseCategories.class).equalTo("id", id).findFirst();
+        ExpenseCategories expenseCategories = mRealm.where(ExpenseCategories.class).equalTo(RealmTable.ID, id).findFirst();
         expenseCategories.deleteFromRealm();
         mRealm.commitTransaction();
     }
