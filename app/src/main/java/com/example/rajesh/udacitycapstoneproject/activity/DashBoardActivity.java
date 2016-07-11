@@ -25,7 +25,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.example.rajesh.udacitycapstoneproject.Constant;
 import com.example.rajesh.udacitycapstoneproject.R;
-import com.example.rajesh.udacitycapstoneproject.account.AccountActivity;
+import com.example.rajesh.udacitycapstoneproject.account.AccountFragment;
 import com.example.rajesh.udacitycapstoneproject.category.CategoryFragment;
 import com.example.rajesh.udacitycapstoneproject.expense.recurring.RecurringFragment;
 import com.google.firebase.auth.FirebaseAuth;
@@ -81,13 +81,14 @@ public class DashBoardActivity extends AppCompatActivity
         setUserProfile(navigationView);
 
         //addFragment(new CategoryFragment(), Constant.FragmentTag.CATEGORY_FRAGMENT);
-        addFragment(new RecurringFragment(), Constant.FragmentTag.EXPENSE_FRAGMENT);
+        //addFragment(new RecurringFragment(), Constant.FragmentTag.EXPENSE_FRAGMENT);
+        addFragment(new AccountFragment(), Constant.FragmentTag.ACCOUNT_FRAGMENT);
 
 
         //startActivity(ExpenseActivity.getLaunchIntent(this, null));
         //startActivity(CategoryEditActivity.getLaunchIntent(this, null));
 
-        startActivity(AccountActivity.getLaunchIntent(this, "1"));
+        //startActivity(AccountActivity.getLaunchIntent(this, null));
     }
 
     private void setUserProfile(NavigationView navigationView) {
@@ -134,11 +135,11 @@ public class DashBoardActivity extends AppCompatActivity
         String fragmentTag = null;
 
         switch (id) {
-           /* case R.id.nav_account:
+            case R.id.nav_account:
                 fragment = new AccountFragment();
                 fragmentTag = "NewFragment";
                 toolbarTitle = ACCOUNTS_TITLE;
-                break;*/
+                break;
             case R.id.nav_categories:
                 fragment = new CategoryFragment();
                 fragmentTag = Constant.FragmentTag.CATEGORY_FRAGMENT;
