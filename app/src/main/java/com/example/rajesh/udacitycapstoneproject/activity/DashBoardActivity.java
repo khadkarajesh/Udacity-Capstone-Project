@@ -4,9 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
@@ -27,6 +25,7 @@ import com.example.rajesh.udacitycapstoneproject.Constant;
 import com.example.rajesh.udacitycapstoneproject.R;
 import com.example.rajesh.udacitycapstoneproject.account.AccountFragment;
 import com.example.rajesh.udacitycapstoneproject.category.CategoryFragment;
+import com.example.rajesh.udacitycapstoneproject.dashboard.DashBoardFragment;
 import com.example.rajesh.udacitycapstoneproject.expense.recurring.RecurringFragment;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -59,16 +58,6 @@ public class DashBoardActivity extends AppCompatActivity
         FirebaseAuth auth = FirebaseAuth.getInstance();
         firebaseUser = auth.getCurrentUser();
 
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -82,7 +71,8 @@ public class DashBoardActivity extends AppCompatActivity
 
         //addFragment(new CategoryFragment(), Constant.FragmentTag.CATEGORY_FRAGMENT);
         //addFragment(new RecurringFragment(), Constant.FragmentTag.EXPENSE_FRAGMENT);
-        addFragment(new AccountFragment(), Constant.FragmentTag.ACCOUNT_FRAGMENT);
+        //addFragment(new AccountFragment(), Constant.FragmentTag.ACCOUNT_FRAGMENT);
+        addFragment(new DashBoardFragment(), Constant.FragmentTag.DASHBOARD_FRAGMENT_TAG);
 
 
         //startActivity(ExpenseActivity.getLaunchIntent(this, null));
@@ -157,12 +147,12 @@ public class DashBoardActivity extends AppCompatActivity
                 break;
             /*
             case R.id.nav_settings:
-                break;
+                break;*/
             case R.id.nav_dashboard:
                 fragment = new DashBoardFragment();
                 fragmentTag = Constant.FragmentTag.DASHBOARD_FRAGMENT_TAG;
                 toolbarTitle = DASHBOARD_TITLE;
-                break;*/
+                break;
             default:
                 break;
         }
