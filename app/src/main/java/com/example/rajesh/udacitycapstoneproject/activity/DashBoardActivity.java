@@ -25,6 +25,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.example.rajesh.udacitycapstoneproject.Constant;
 import com.example.rajesh.udacitycapstoneproject.R;
+import com.example.rajesh.udacitycapstoneproject.account.AccountActivity;
 import com.example.rajesh.udacitycapstoneproject.category.CategoryFragment;
 import com.example.rajesh.udacitycapstoneproject.expense.recurring.RecurringFragment;
 import com.google.firebase.auth.FirebaseAuth;
@@ -85,6 +86,8 @@ public class DashBoardActivity extends AppCompatActivity
 
         //startActivity(ExpenseActivity.getLaunchIntent(this, null));
         //startActivity(CategoryEditActivity.getLaunchIntent(this, null));
+
+        startActivity(AccountActivity.getLaunchIntent(this, "1"));
     }
 
     private void setUserProfile(NavigationView navigationView) {
