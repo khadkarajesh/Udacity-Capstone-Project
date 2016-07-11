@@ -3,6 +3,7 @@ package com.example.rajesh.udacitycapstoneproject.category;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
@@ -47,6 +48,7 @@ public class CategoryFragment extends BaseFragment {
 
         RealmResults<ExpenseCategories> expenseCategories = mRealm.where(ExpenseCategories.class).findAll();
         rvCategory.setLayoutManager(new LinearLayoutManager(getActivity()));
+        rvCategory.setItemAnimator(new DefaultItemAnimator());
         categoryAdapter = new CategoryAdapter(getActivity(), expenseCategories);
         rvCategory.setAdapter(categoryAdapter);
 
