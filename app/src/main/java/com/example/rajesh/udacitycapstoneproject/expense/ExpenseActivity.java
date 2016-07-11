@@ -20,6 +20,7 @@ import com.example.rajesh.udacitycapstoneproject.realm.Expense;
 import com.example.rajesh.udacitycapstoneproject.realm.ExpenseCategories;
 import com.example.rajesh.udacitycapstoneproject.realm.table.RealmTable;
 import com.example.rajesh.udacitycapstoneproject.utils.ActivityState;
+import com.example.rajesh.udacitycapstoneproject.utils.DateUtil;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -27,7 +28,6 @@ import java.util.Calendar;
 import butterknife.Bind;
 import io.realm.Realm;
 import io.realm.RealmResults;
-import timber.log.Timber;
 
 public class ExpenseActivity extends ToolbarBaseActivity {
     @Bind(R.id.edt_expense_title)
@@ -99,7 +99,7 @@ public class ExpenseActivity extends ToolbarBaseActivity {
         Expense expense = getExpenseById(expenseId);
         edtExpenseTitle.setText(expense.getExpenseTitle());
         edtExpenseAmount.setText(String.valueOf(expense.getExpenseAmount()));
-        edtExpenseDate.setText(formatDate(expense.getExpenseDate()));
+        edtExpenseDate.setText(DateUtil.formatDate(expense.getExpenseDate()));
         edtExpenseDescription.setText(expense.getExpenseDescription());
         swhExpenseType.setChecked(expense.getExpenseType().equals(Constant.RECURRING_TYPE) ? true : false);
         spinnerExpenseCategories.setSelection(expenseCategoryAdapter.getCategoryPositionById((int) expense.getId()));
@@ -232,7 +232,7 @@ public class ExpenseActivity extends ToolbarBaseActivity {
                 Calendar calendar = Calendar.getInstance();
                 calendar.set(year, monthOfYear, dayOfMonth);
                 expenseDate = calendar.getTime();
-                edtExpenseDate.setText(formatDate(calendar.getTime()));
+                edtExpenseDate.setText(DateUtil.formatDate(calendar.getTime()));
             }
         }, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH));
         datePickerDialog.setCancelable(true);
@@ -245,10 +245,6 @@ public class ExpenseActivity extends ToolbarBaseActivity {
         return intent;
     }
 
-    private String formatDate(java.util.Date date) {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MMM dd,yyy");
-        return simpleDateFormat.format(date);
-    }
 
     private int getNextExpenseId() {
         if (mRealm.where(Expense.class).max(RealmTable.ID) == null) {
