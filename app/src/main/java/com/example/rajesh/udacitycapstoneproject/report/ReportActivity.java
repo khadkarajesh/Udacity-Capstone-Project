@@ -36,6 +36,7 @@ public class ReportActivity extends BaseActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setTitle(R.string.history_report);
 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,8 +48,8 @@ public class ReportActivity extends BaseActivity {
 
     private void setupViewPager(ViewPager viewPager) {
         ReportViewPagerAdapter adapter = new ReportViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new HistoryFragment(), "History");
-        adapter.addFragment(new ReportFragment(), "Report");
+        adapter.addFragment(new HistoryFragment(), getString(R.string.history));
+        adapter.addFragment(new ReportFragment(), getString(R.string.report));
         viewPager.setAdapter(adapter);
     }
 

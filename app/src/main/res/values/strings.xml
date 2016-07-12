@@ -30,6 +30,16 @@
     <string name="msg_valid_date">Enter valid date</string>
     <string name="msg_empty_field">Can\'t be empty</string>
     <string name="msg_empty_amount">Expense amount can\'t be empty</string>
+    <string name="setting">Setting</string>
+    <string name="history_report">History/Report</string>
+    <string name="history">History</string>
+    <string name="report">Report</string>
+    <string name="notify">Notify</string>
+    <string name="expense_recurring">Recurring Expense</string>
+    <string name="account_recurring">Recurring Account</string>
+    <string name="information">Information</string>
+    <string name="tutorial">Tutorial</string>
+    <string name="about_us">About Us</string>
 
     <string-array name="sort_by">
         <item>Week</item>

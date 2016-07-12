@@ -4,6 +4,8 @@ public class Constant {
     public static final String RECURRING_TYPE = "recurring";
     public static final String NON_RECURRING_TYPE = "non-recurring";
     public static final String APP_LAUNCH = "app_launch";
+    public static final String RECURRING_EXPENSE_NOTIFICATION = "recurring_expense_notification";
+    public static final String RECURRING_ACCOUNT_NOTFICATION = "recurring_account_notification";
 
     public static final String EXPENSE = "expense";
     public static final String EXPENSE_CATEGORY = "expense_category";
