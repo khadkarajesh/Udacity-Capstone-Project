@@ -9,13 +9,12 @@ import android.os.Build;
 
 import com.example.rajesh.udacitycapstoneproject.notification.ExpenseTrackerBroadCastReceiver;
 
-import timber.log.Timber;
+import java.util.Calendar;
 
 public class AlarmUtil {
 
     public static void setAlarm(Context context) {
-        Timber.d("called here set alarm");
-        long milliSeconds = System.currentTimeMillis();
+        long milliSeconds = getNextDayTimeInMillis();
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         Intent broadCastIntent = new Intent(context, ExpenseTrackerBroadCastReceiver.class);
 
@@ -25,5 +24,11 @@ public class AlarmUtil {
         } else {
             alarmManager.set(AlarmManager.RTC_WAKEUP, milliSeconds, pendingIntent);
         }
+    }
+
+    public static long getNextDayTimeInMillis() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.DATE, 1);
+        return calendar.getTimeInMillis();
     }
 }

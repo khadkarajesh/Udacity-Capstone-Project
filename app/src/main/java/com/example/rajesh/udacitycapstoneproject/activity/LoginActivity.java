@@ -83,7 +83,6 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         mRealm = Realm.getDefaultInstance();
 
         AlarmUtil.setAlarm(this);
-        //startService(new Intent(this, PollingService.class));
 
         ButterKnife.bind(this);
 
@@ -314,6 +313,6 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
     }
 
     public static Intent getLaunchIntent(Context context) {
-        return new Intent(context,LoginActivity.class);
+        return new Intent(context, LoginActivity.class);
     }
 }

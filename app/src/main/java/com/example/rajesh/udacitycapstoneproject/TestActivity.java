@@ -1,13 +1,11 @@
 package com.example.rajesh.udacitycapstoneproject;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
-import com.example.rajesh.udacitycapstoneproject.realm.Expense;
-import com.example.rajesh.udacitycapstoneproject.realm.table.RealmTable;
+import java.util.Calendar;
 
 import io.realm.Realm;
-import io.realm.RealmResults;
 import timber.log.Timber;
 
 public class TestActivity extends AppCompatActivity {
@@ -18,12 +16,10 @@ public class TestActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
-        mRealm = Realm.getDefaultInstance();
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.DATE, 1);
+        //calendar.add(Calendar.HOUR, 8);
 
-        RealmResults<Expense> results = mRealm.where(Expense.class).distinct(RealmTable.TITLE).where().equalTo(RealmTable.TYPE, Constant.RECURRING_TYPE).findAll();
-        for (int i = 0; i < results.size(); i++) {
-            Timber.d("expense title %s", results.get(i).getExpenseTitle());
-        }
-
+        Timber.d("milliseconds %s",calendar.getTimeInMillis());
     }
 }

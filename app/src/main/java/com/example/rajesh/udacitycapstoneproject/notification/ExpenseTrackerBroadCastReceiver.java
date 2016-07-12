@@ -14,6 +14,7 @@ import com.example.rajesh.udacitycapstoneproject.R;
 import com.example.rajesh.udacitycapstoneproject.realm.Account;
 import com.example.rajesh.udacitycapstoneproject.realm.Expense;
 import com.example.rajesh.udacitycapstoneproject.realm.table.RealmTable;
+import com.example.rajesh.udacitycapstoneproject.utils.AlarmUtil;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -21,7 +22,6 @@ import java.util.Random;
 
 import io.realm.Realm;
 import io.realm.RealmResults;
-import timber.log.Timber;
 
 
 public class ExpenseTrackerBroadCastReceiver extends BroadcastReceiver {
@@ -36,7 +36,8 @@ public class ExpenseTrackerBroadCastReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         mContext = context;
         mRealm = Realm.getDefaultInstance();
-        Timber.d("ting tong ting tong");
+
+        AlarmUtil.setAlarm(context);
 
         checkRecurringExpense();
         checkRecurringAccount();
