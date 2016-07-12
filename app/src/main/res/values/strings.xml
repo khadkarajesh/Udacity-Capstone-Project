@@ -42,6 +42,8 @@
     <string name="about_us">About Us</string>
     <string name="confirm">confirm</string>
     <string name="cancel">Cancel</string>
+    <string name="add_account_to_get_started">Add Account to Get Started</string>
+    <string name="add_expense_to_get_started">Add Expense to Get Started</string>
 
     <string-array name="sort_by">
         <item>Week</item>
