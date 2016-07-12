@@ -204,6 +204,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                                     Toast.LENGTH_SHORT).show();
                         } else {
                             startActivity(DashBoardActivity.getLaunchIntent(LoginActivity.this));
+                            finish();
                         }
                     }
                 });
@@ -276,6 +277,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
                     startActivity(DashBoardActivity.getLaunchIntent(LoginActivity.this));
+                    finish();
                 } else {
                     Toast.makeText(LoginActivity.this, "Couldn't login", Toast.LENGTH_SHORT).show();
                 }
@@ -294,6 +296,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                                     Toast.LENGTH_SHORT).show();
                         } else {
                             startActivity(DashBoardActivity.getLaunchIntent(LoginActivity.this));
+                            finish();
                         }
                     }
                 });

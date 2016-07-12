@@ -87,6 +87,13 @@ public class DashBoardActivity extends AppCompatActivity
         //startActivity(new Intent(this, TestActivity.class));
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        addFragment(new DashBoardFragment(), Constant.FragmentTag.DASHBOARD_FRAGMENT_TAG);
+        getSupportActionBar().setTitle(DASHBOARD_TITLE);
+    }
+
     private void setUserProfile(NavigationView navigationView) {
         View view = navigationView.getHeaderView(0);
         profilePic = ButterKnife.findById(view, R.id.imageView);
@@ -197,6 +204,6 @@ public class DashBoardActivity extends AppCompatActivity
     }
 
     private void addFragment(Fragment fragment, String tag) {
-        getSupportFragmentManager().beginTransaction().replace(R.id.ll_dashboard_wrapper, fragment, tag).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.ll_dashboard_wrapper, fragment, tag).addToBackStack(tag).commit();
     }
 }

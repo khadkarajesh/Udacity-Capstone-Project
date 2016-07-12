@@ -184,6 +184,7 @@ public class ExpenseActivity extends ToolbarBaseActivity {
             } else {
                 updateExpense(expenseTitle, expenseDescription, expenseAmount);
             }
+            finish();
         } else {
             focusView.requestFocus();
         }

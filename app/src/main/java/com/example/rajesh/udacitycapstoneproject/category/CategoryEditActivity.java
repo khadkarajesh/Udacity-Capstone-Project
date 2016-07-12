@@ -102,7 +102,9 @@ public class CategoryEditActivity extends ToolbarBaseActivity {
             } else {
                 updateCategory(expenseCategory, getPickerColor());
             }
+            finish();
         }
+
     }
 
     private void insertCategory(String expenseCategory, String categoryColor) {

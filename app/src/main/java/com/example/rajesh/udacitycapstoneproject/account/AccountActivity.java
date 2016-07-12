@@ -139,6 +139,7 @@ public class AccountActivity extends ToolbarBaseActivity {
             } else {
                 updateAccount(accountTitle, accountAmount);
             }
+            finish();
         } else {
             focusView.requestFocus();
         }
