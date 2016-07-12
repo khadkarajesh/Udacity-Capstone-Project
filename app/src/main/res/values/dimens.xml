@@ -41,4 +41,5 @@
     <dimen name="dimen_22x10">220dp</dimen>
     <dimen name="dimen_3x100">300dp</dimen>
     <dimen name="dimen_4x5">20dp</dimen>
+    <dimen name="dimen_6x7">42dp</dimen>
 </resources>
