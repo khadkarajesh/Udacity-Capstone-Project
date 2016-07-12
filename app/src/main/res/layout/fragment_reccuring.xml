@@ -1,8 +1,8 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".expense.recurring.RecurringFragment">
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             tools:context=".expense.recurring.RecurringFragment">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_recurring_expense"
@@ -13,6 +13,11 @@
         android:paddingLeft="@dimen/dimen_8x2"
         android:paddingRight="@dimen/dimen_8x2"
         android:paddingTop="@dimen/dimen_8x1"
-        android:scrollbarStyle="outsideOverlay" />
+        android:scrollbarStyle="outsideOverlay"/>
+
+    <include
+        layout="@layout/no_expense_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
 </FrameLayout>

@@ -114,7 +114,11 @@ public class AccountActivity extends ToolbarBaseActivity {
         String accountTitle = edtAccountTitle.getText().toString().trim();
         String accountAmount = edtAccountAmount.getText().toString().trim();
 
-
+        if (accountCreatedDate == null) {
+            focusView = edtAccountCreatedDate;
+            valid = false;
+            edtAccountCreatedDate.setError(getString(R.string.msg_empty_date));
+        }
         if (accountCreatedDate.after(Calendar.getInstance().getTime())) {
             focusView = edtAccountCreatedDate;
             valid = false;
@@ -134,6 +138,7 @@ public class AccountActivity extends ToolbarBaseActivity {
         }
 
         if (valid) {
+            Timber.d("save button clicked");
             if (activityState == ActivityState.ADD) {
                 saveAccount(accountTitle, accountAmount);
             } else {

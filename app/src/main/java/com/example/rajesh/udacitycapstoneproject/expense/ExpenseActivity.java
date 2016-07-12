@@ -154,6 +154,11 @@ public class ExpenseActivity extends ToolbarBaseActivity {
         String expenseDescription = edtExpenseDescription.getText().toString().trim();
         String expenseAmount = edtExpenseAmount.getText().toString().trim();
 
+        if (expenseDate == null) {
+            focusView = edtExpenseDate;
+            valid = false;
+            edtExpenseDate.setError(getString(R.string.msg_empty_date));
+        }
         if (expenseDate.after(Calendar.getInstance().getTime())) {
             focusView = edtExpenseDate;
             valid = false;

@@ -5,9 +5,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
@@ -28,7 +26,6 @@ import com.github.clans.fab.FloatingActionMenu;
 import java.util.Date;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import io.realm.Realm;
 import io.realm.RealmResults;
@@ -169,7 +166,7 @@ public class DashBoardFragment extends BaseFragment {
         swipeToDismissTouchHelper.attachToRecyclerView(rvDashBoard);
     }
 
-    @OnClick({R.id.fab_add_expense, R.id.fab_add_account, R.id.fab_add_category})
+    @OnClick({R.id.fab_add_expense, R.id.fab_add_account, R.id.fab_add_category, R.id.iv_no_account, R.id.iv_no_expense})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.fab_add_account:
@@ -181,6 +178,12 @@ public class DashBoardFragment extends BaseFragment {
             case R.id.fab_add_category:
                 getActivity().startActivity(CategoryEditActivity.getLaunchIntent(getActivity(), null));
                 break;
+            case R.id.iv_no_account:
+                getActivity().startActivity(AccountActivity.getLaunchIntent(getActivity(), null));
+                break;
+            case R.id.iv_no_expense:
+                getActivity().startActivity(ExpenseActivity.getLaunchIntent(getActivity(), null));
+                break;
         }
         fabMenu.close(true);
     }
@@ -190,19 +193,5 @@ public class DashBoardFragment extends BaseFragment {
         Expense expense = mRealm.where(Expense.class).equalTo(RealmTable.ID, id).findFirst();
         expense.deleteFromRealm();
         mRealm.commitTransaction();
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // TODO: inflate a fragment view
-        View rootView = super.onCreateView(inflater, container, savedInstanceState);
-        ButterKnife.bind(this, rootView);
-        return rootView;
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        ButterKnife.unbind(this);
     }
 }
