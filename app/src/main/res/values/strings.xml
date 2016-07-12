@@ -30,4 +30,10 @@
     <string name="msg_valid_date">Enter valid date</string>
     <string name="msg_empty_field">Can\'t be empty</string>
     <string name="msg_empty_amount">Expense amount can\'t be empty</string>
+
+    <string-array name="sort_by">
+        <item>Week</item>
+        <item>Month</item>
+        <item>Year</item>
+    </string-array>
 </resources>

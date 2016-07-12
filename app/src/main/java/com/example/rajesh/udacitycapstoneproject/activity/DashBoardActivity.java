@@ -27,6 +27,7 @@ import com.example.rajesh.udacitycapstoneproject.account.AccountFragment;
 import com.example.rajesh.udacitycapstoneproject.category.CategoryFragment;
 import com.example.rajesh.udacitycapstoneproject.dashboard.DashBoardFragment;
 import com.example.rajesh.udacitycapstoneproject.expense.recurring.RecurringFragment;
+import com.example.rajesh.udacitycapstoneproject.report.ReportFragment;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -72,7 +73,9 @@ public class DashBoardActivity extends AppCompatActivity
         //addFragment(new CategoryFragment(), Constant.FragmentTag.CATEGORY_FRAGMENT);
         //addFragment(new RecurringFragment(), Constant.FragmentTag.EXPENSE_FRAGMENT);
         //addFragment(new AccountFragment(), Constant.FragmentTag.ACCOUNT_FRAGMENT);
-        addFragment(new DashBoardFragment(), Constant.FragmentTag.DASHBOARD_FRAGMENT_TAG);
+        //addFragment(new DashBoardFragment(), Constant.FragmentTag.DASHBOARD_FRAGMENT_TAG);
+        addFragment(new ReportFragment(), Constant.FragmentTag.REPORT_FRAGMENT);
+
 
 
         //startActivity(ExpenseActivity.getLaunchIntent(this, null));
