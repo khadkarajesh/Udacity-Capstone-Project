@@ -3,12 +3,14 @@ package com.example.rajesh.udacitycapstoneproject.realm;
 import java.util.Date;
 
 import io.realm.RealmObject;
+import io.realm.annotations.Index;
 import io.realm.annotations.PrimaryKey;
 
 public class Expense extends RealmObject {
     @PrimaryKey
     private long id;
     private Date date;
+    @Index
     private String title;
     private Double amount;
     private String description;

@@ -29,13 +29,13 @@ public class SettingActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setToolbar();
 
-        swRecurringAccount.setChecked(Hawk.get(Constant.RECURRING_ACCOUNT_NOTFICATION, false));
+        swRecurringAccount.setChecked(Hawk.get(Constant.RECURRING_ACCOUNT_NOTIFICATION, false));
         swRecurringExpense.setChecked(Hawk.get(Constant.RECURRING_EXPENSE_NOTIFICATION, false));
 
         swRecurringAccount.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                Hawk.put(Constant.RECURRING_ACCOUNT_NOTFICATION, swRecurringAccount.isChecked() ? true : false);
+                Hawk.put(Constant.RECURRING_ACCOUNT_NOTIFICATION, swRecurringAccount.isChecked() ? true : false);
             }
         });
 

@@ -13,9 +13,7 @@ import com.example.rajesh.udacitycapstoneproject.Constant;
 import com.example.rajesh.udacitycapstoneproject.CustomToolbar;
 import com.example.rajesh.udacitycapstoneproject.R;
 import com.example.rajesh.udacitycapstoneproject.base.activity.ToolbarBaseActivity;
-import com.example.rajesh.udacitycapstoneproject.expense.ExpenseActivity;
 import com.example.rajesh.udacitycapstoneproject.realm.Account;
-import com.example.rajesh.udacitycapstoneproject.realm.Expense;
 import com.example.rajesh.udacitycapstoneproject.realm.table.RealmTable;
 import com.example.rajesh.udacitycapstoneproject.utils.ActivityState;
 import com.example.rajesh.udacitycapstoneproject.utils.DateUtil;
@@ -160,7 +158,7 @@ public class AccountActivity extends ToolbarBaseActivity {
     private void saveAccount(String accountTitle, String accountAmount) {
         mRealm.beginTransaction();
         Account account = mRealm.createObject(Account.class);
-        account.setId(getNextExpenseId());
+        account.setId(getNextAccountId());
         account.setTitle(accountTitle);
         account.setAccountAmount(Double.valueOf(accountAmount));
         account.setDateCreated(accountCreatedDate);
@@ -189,7 +187,7 @@ public class AccountActivity extends ToolbarBaseActivity {
         datePickerDialog.show();
     }
 
-    private int getNextExpenseId() {
+    private int getNextAccountId() {
         if (mRealm.where(Account.class).max(RealmTable.ID) == null) {
             return FIRST_DATA_ITEM_ID;
         } else {

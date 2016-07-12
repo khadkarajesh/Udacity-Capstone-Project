@@ -1,5 +1,6 @@
 package com.example.rajesh.udacitycapstoneproject.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import com.example.rajesh.udacitycapstoneproject.Constant;
 import com.example.rajesh.udacitycapstoneproject.R;
 import com.example.rajesh.udacitycapstoneproject.realm.ExpenseCategories;
 import com.example.rajesh.udacitycapstoneproject.realm.table.RealmTable;
+import com.example.rajesh.udacitycapstoneproject.utils.AlarmUtil;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -77,7 +79,11 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+
         mRealm = Realm.getDefaultInstance();
+
+        AlarmUtil.setAlarm(this);
+        //startService(new Intent(this, PollingService.class));
 
         ButterKnife.bind(this);
 
@@ -305,5 +311,9 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         Random rnd = new Random();
         int color = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
         return String.format("#%06X", 0xFFFFFF & color);
+    }
+
+    public static Intent getLaunchIntent(Context context) {
+        return new Intent(context,LoginActivity.class);
     }
 }

@@ -23,12 +23,12 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.example.rajesh.udacitycapstoneproject.Constant;
 import com.example.rajesh.udacitycapstoneproject.R;
+import com.example.rajesh.udacitycapstoneproject.account.AccountActivity;
 import com.example.rajesh.udacitycapstoneproject.account.AccountFragment;
 import com.example.rajesh.udacitycapstoneproject.category.CategoryFragment;
 import com.example.rajesh.udacitycapstoneproject.dashboard.DashBoardFragment;
 import com.example.rajesh.udacitycapstoneproject.expense.recurring.RecurringFragment;
 import com.example.rajesh.udacitycapstoneproject.report.ReportFragment;
-import com.example.rajesh.udacitycapstoneproject.setting.SettingActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -81,9 +81,10 @@ public class DashBoardActivity extends AppCompatActivity
         //startActivity(ExpenseActivity.getLaunchIntent(this, null));
         //startActivity(CategoryEditActivity.getLaunchIntent(this, null));
 
-        //startActivity(AccountActivity.getLaunchIntent(this, null));
+        startActivity(AccountActivity.getLaunchIntent(this, null));
         //startActivity(new Intent(this, ReportActivity.class));
-        startActivity(new Intent(this, SettingActivity.class));
+        //startActivity(new Intent(this, SettingActivity.class));
+        //startActivity(new Intent(this, TestActivity.class));
     }
 
     private void setUserProfile(NavigationView navigationView) {

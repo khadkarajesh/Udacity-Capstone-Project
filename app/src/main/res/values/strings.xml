@@ -40,6 +40,8 @@
     <string name="information">Information</string>
     <string name="tutorial">Tutorial</string>
     <string name="about_us">About Us</string>
+    <string name="confirm">confirm</string>
+    <string name="cancel">Cancel</string>
 
     <string-array name="sort_by">
         <item>Week</item>

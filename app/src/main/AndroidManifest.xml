@@ -36,19 +36,28 @@
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".expense.ExpenseActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".account.AccountActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".report.ReportActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".setting.SettingActivity"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar"/>
+
+        <receiver
+            android:name=".notification.ExpenseTrackerBroadCastReceiver"
+            android:enabled="true"/>
+
+        <service android:name=".notification.PollingService"/>
+
+        <activity
+            android:name=".notification.ConfirmationActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
+        <activity android:name=".TestActivity">
         </activity>
     </application>
 
