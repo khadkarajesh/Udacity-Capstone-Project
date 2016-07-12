@@ -74,7 +74,7 @@ public class DashBoardActivity extends AppCompatActivity
         //addFragment(new CategoryFragment(), Constant.FragmentTag.CATEGORY_FRAGMENT);
         //addFragment(new RecurringFragment(), Constant.FragmentTag.EXPENSE_FRAGMENT);
         //addFragment(new AccountFragment(), Constant.FragmentTag.ACCOUNT_FRAGMENT);
-        addFragment(new DashBoardFragment(), Constant.FragmentTag.DASHBOARD_FRAGMENT_TAG);
+        //addFragment(new DashBoardFragment(), Constant.FragmentTag.DASHBOARD_FRAGMENT_TAG);
         //addFragment(new ReportFragment(), Constant.FragmentTag.REPORT_FRAGMENT);
 
 

@@ -10,4 +10,9 @@
         android:padding="@dimen/dimen_8x2"
         android:scrollbarStyle="outsideOverlay"/>
 
+    <include
+        layout="@layout/no_account_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
 </LinearLayout>
