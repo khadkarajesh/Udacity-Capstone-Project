@@ -61,7 +61,7 @@ public class ConfirmationActivity extends BaseActivity {
         }).setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-
+                finish();
             }
         });
         alertDialog.show();
