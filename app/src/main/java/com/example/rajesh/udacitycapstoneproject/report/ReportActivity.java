@@ -47,7 +47,7 @@ public class ReportActivity extends BaseActivity {
 
     private void setupViewPager(ViewPager viewPager) {
         ReportViewPagerAdapter adapter = new ReportViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new ReportFragment(), "History");
+        adapter.addFragment(new HistoryFragment(), "History");
         adapter.addFragment(new ReportFragment(), "Report");
         viewPager.setAdapter(adapter);
     }
