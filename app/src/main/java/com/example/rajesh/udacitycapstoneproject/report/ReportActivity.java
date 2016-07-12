@@ -1,5 +1,7 @@
 package com.example.rajesh.udacitycapstoneproject.report;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
@@ -56,5 +58,9 @@ public class ReportActivity extends BaseActivity {
     @Override
     protected int getLayout() {
         return R.layout.activity_report;
+    }
+
+    public static Intent getLaunchIntent(Context context) {
+        return new Intent(context, ReportActivity.class);
     }
 }

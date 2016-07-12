@@ -88,6 +88,8 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
 
         if (!Hawk.get(Constant.APP_LAUNCH, false)) {
             autoPopulateCategories();
+            Hawk.put(Constant.RECURRING_ACCOUNT_NOTIFICATION, true);
+            Hawk.put(Constant.RECURRING_EXPENSE_NOTIFICATION, true);
         }
 
         mAuth = FirebaseAuth.getInstance();

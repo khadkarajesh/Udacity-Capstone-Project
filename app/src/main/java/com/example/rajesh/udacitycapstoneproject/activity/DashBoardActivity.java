@@ -23,12 +23,12 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.example.rajesh.udacitycapstoneproject.Constant;
 import com.example.rajesh.udacitycapstoneproject.R;
-import com.example.rajesh.udacitycapstoneproject.TestActivity;
 import com.example.rajesh.udacitycapstoneproject.account.AccountFragment;
 import com.example.rajesh.udacitycapstoneproject.category.CategoryFragment;
 import com.example.rajesh.udacitycapstoneproject.dashboard.DashBoardFragment;
 import com.example.rajesh.udacitycapstoneproject.expense.recurring.RecurringFragment;
-import com.example.rajesh.udacitycapstoneproject.report.ReportFragment;
+import com.example.rajesh.udacitycapstoneproject.report.ReportActivity;
+import com.example.rajesh.udacitycapstoneproject.setting.SettingActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -74,8 +74,8 @@ public class DashBoardActivity extends AppCompatActivity
         //addFragment(new CategoryFragment(), Constant.FragmentTag.CATEGORY_FRAGMENT);
         //addFragment(new RecurringFragment(), Constant.FragmentTag.EXPENSE_FRAGMENT);
         //addFragment(new AccountFragment(), Constant.FragmentTag.ACCOUNT_FRAGMENT);
-        //addFragment(new DashBoardFragment(), Constant.FragmentTag.DASHBOARD_FRAGMENT_TAG);
-        addFragment(new ReportFragment(), Constant.FragmentTag.REPORT_FRAGMENT);
+        addFragment(new DashBoardFragment(), Constant.FragmentTag.DASHBOARD_FRAGMENT_TAG);
+        //addFragment(new ReportFragment(), Constant.FragmentTag.REPORT_FRAGMENT);
 
 
         //startActivity(ExpenseActivity.getLaunchIntent(this, null));
@@ -84,7 +84,7 @@ public class DashBoardActivity extends AppCompatActivity
         //startActivity(AccountActivity.getLaunchIntent(this, null));
         //startActivity(new Intent(this, ReportActivity.class));
         //startActivity(new Intent(this, SettingActivity.class));
-        startActivity(new Intent(this, TestActivity.class));
+        //startActivity(new Intent(this, TestActivity.class));
     }
 
     private void setUserProfile(NavigationView navigationView) {
@@ -130,6 +130,15 @@ public class DashBoardActivity extends AppCompatActivity
         Fragment fragment = null;
         String fragmentTag = null;
 
+        if (id == R.id.nav_history_report) {
+            startActivity(ReportActivity.getLaunchIntent(this));
+            return true;
+        }
+        if (id == R.id.nav_settings) {
+            startActivity(SettingActivity.getLaunchIntent(this));
+            return true;
+        }
+
         switch (id) {
             case R.id.nav_account:
                 fragment = new AccountFragment();
@@ -141,19 +150,11 @@ public class DashBoardActivity extends AppCompatActivity
                 fragmentTag = Constant.FragmentTag.CATEGORY_FRAGMENT;
                 toolbarTitle = CATEGORIES_TITLE;
                 break;
-         /*   case R.id.nav_history_report:
-                fragment = new ReportFragment();
-                fragmentTag = Constant.FragmentTag.REPORT_FRAGMENT;
-                toolbarTitle = HISTORY_AND_REPORT_TITLE;
-                break;*/
             case R.id.nav_recurring_expense:
                 fragment = new RecurringFragment();
                 fragmentTag = Constant.FragmentTag.EXPENSE_FRAGMENT;
                 toolbarTitle = RECURRING_EXPENSE_TITLE;
                 break;
-            /*
-            case R.id.nav_settings:
-                break;*/
             case R.id.nav_dashboard:
                 fragment = new DashBoardFragment();
                 fragmentTag = Constant.FragmentTag.DASHBOARD_FRAGMENT_TAG;
