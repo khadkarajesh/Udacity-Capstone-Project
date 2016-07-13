@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="horizontal"
+              android:padding="@dimen/dimen_8x1">
+
+    <com.example.rajesh.udacitycapstoneproject.widget.CircularView
+        android:id="@+id/iv_categories_indicator"
+        android:layout_width="@dimen/dimen_8x3"
+        android:layout_height="@dimen/dimen_8x3"
+        android:layout_marginRight="@dimen/dimen_4x5"
+        android:padding="@dimen/dimen_8x1"
+        android:layout_marginEnd="@dimen/dimen_4x5"/>
+
+    <TextView
+        android:id="@+id/tv_categories_name"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical"
+        android:text="Food"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium.Inverse"
+        android:textColor="@android:color/black"/>
+</LinearLayout>

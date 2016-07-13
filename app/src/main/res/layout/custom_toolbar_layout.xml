@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+                                   xmlns:app="http://schemas.android.com/apk/res-auto"
+                                   android:id="@+id/toolbar"
+                                   android:layout_width="match_parent"
+                                   android:layout_height="wrap_content"
+                                   android:background="?attr/colorPrimary"
+                                   android:minHeight="?attr/actionBarSize"
+                                   android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+                                   app:contentInsetLeft="0dp"
+                                   app:contentInsetStart="0dp"
+                                   app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:layout_width="@dimen/dimen_9x"
+            android:layout_height="match_parent">
+
+            <ImageButton
+                android:id="@+id/img_btn_left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/toolbar_text_view_selector"
+                android:contentDescription="@string/start_action_button"
+                android:padding="16dp"
+                android:src="@drawable/ic_arrow_back"
+                android:visibility="visible"/>
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tv_toolbar_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:textAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Title"/>
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tv_right"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical|end"
+                android:background="@drawable/toolbar_text_view_selector"
+                android:clickable="true"
+                android:gravity="center"
+                android:minWidth="@dimen/flat_button_min_width"
+                android:textAllCaps="true"
+                android:textColor="@android:color/white"
+                android:visibility="visible"/>
+        </FrameLayout>
+    </LinearLayout>
+</android.support.v7.widget.Toolbar>

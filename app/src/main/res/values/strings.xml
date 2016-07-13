@@ -1,8 +1,8 @@
 <resources>
-    <string name="app_name">UdacityCapstoneProject</string>
+    <string name="app_name">Expense Tracker</string>
     <string name="google_web_client_id">135696297368-4c0q5d0koe2ae81n6gqfbkbqqdck6nb9.apps.googleusercontent.com</string>
     <string name="facebook_app_id">1103952132977263</string>
-
+    <string name="banner_ad_unit_id">ca-app-pub-1642716182175443/2415407215</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
@@ -24,4 +24,48 @@
     <string name="password_doesnt_match">Password doesn\'t match</string>
     <string name="get_started">Get Started</string>
     <string name="valid_password">Enter valid password</string>
+    <string name="start_action_button">start action button</string>
+    <string name="empty_catgory_message">Enter valid category name</string>
+    <string name="color_picker_dialog">color_picker_dialog</string>
+    <string name="msg_valid_date">Enter valid date</string>
+    <string name="msg_empty_field">Can\'t be empty</string>
+    <string name="msg_empty_amount">Expense amount can\'t be empty</string>
+    <string name="setting">Setting</string>
+    <string name="history_report">History/Report</string>
+    <string name="history">History</string>
+    <string name="report">Report</string>
+    <string name="notify">Notify</string>
+    <string name="expense_recurring">Recurring Expense</string>
+    <string name="account_recurring">Recurring Account</string>
+    <string name="information">Information</string>
+    <string name="tutorial">Tutorial</string>
+    <string name="about_us">About Us</string>
+    <string name="confirm">confirm</string>
+    <string name="cancel">Cancel</string>
+    <string name="add_account_to_get_started">Add Account to Get Started</string>
+    <string name="add_expense_to_get_started">Add Expense to Get Started</string>
+    <string name="msg_empty_date">Date can\'t be empty</string>
+    <string name="login_via_facebook">Login via facebook</string>
+    <string name="login_via_google">Login via google</string>
+    <string name="login_via_email">Login via Email</string>
+    <string name="sign_up_via_email">Sign up via Email</string>
+    <string name="sign_up">Sign up</string>
+    <string name="add_expense">Add expense</string>
+    <string name="add_account">Add account</string>
+    <string name="add_category">Add category</string>
+    <string name="txt_save">SAVE</string>
+    <string name="txt_update">UPDATE</string>
+    <string name="confirmation_dialog_content">Do you want to add recurring %1$s %2$.2f to your %3$s?</string>
+    <string name="expense">expense</string>
+    <string name="account">account</string>
+    <string name="categories">Categories</string>
+    <string name="total_amount">"Total Amount "</string>
+    <string name="id">ID</string>
+    <string name="sign_in">sign in</string>
+
+    <string-array name="sort_by">
+        <item>Week</item>
+        <item>Month</item>
+        <item>Year</item>
+    </string-array>
 </resources>

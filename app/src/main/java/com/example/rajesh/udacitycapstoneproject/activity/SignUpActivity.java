@@ -1,4 +1,4 @@
-package com.example.rajesh.udacitycapstoneproject;
+package com.example.rajesh.udacitycapstoneproject.activity;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.rajesh.udacitycapstoneproject.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -90,9 +91,10 @@ public class SignUpActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (!task.isSuccessful()) {
-                    Toast.makeText(SignUpActivity.this, "failed to complete task "+task.getException(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SignUpActivity.this, "failed to complete task " + task.getException(), Toast.LENGTH_SHORT).show();
                 } else {
                     startActivity(DashBoardActivity.getLaunchIntent(SignUpActivity.this));
+                    finish();
                 }
             }
         });

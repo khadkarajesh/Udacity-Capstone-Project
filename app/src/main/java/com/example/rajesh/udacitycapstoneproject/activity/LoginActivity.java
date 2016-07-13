@@ -1,6 +1,8 @@
-package com.example.rajesh.udacitycapstoneproject;
+package com.example.rajesh.udacitycapstoneproject.activity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +12,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.rajesh.udacitycapstoneproject.Constant;
+import com.example.rajesh.udacitycapstoneproject.R;
+import com.example.rajesh.udacitycapstoneproject.realm.ExpenseCategories;
+import com.example.rajesh.udacitycapstoneproject.realm.table.RealmTable;
+import com.example.rajesh.udacitycapstoneproject.utils.AlarmUtil;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -17,6 +24,9 @@ import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -25,20 +35,26 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.orhanobut.hawk.Hawk;
 
 import java.util.Arrays;
+import java.util.Random;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import io.realm.Realm;
 
 public class LoginActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
+    private static final int FIRST_DATA_ITEM_ID = 1;
+    private static final int ID_INCREMENTER = 1;
     public static final int GOOGLE_SIGN_IN_CODE = 5000;
     private static final String TAG = LoginActivity.class.getSimpleName();
 
@@ -60,13 +76,29 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
     @Bind(R.id.sign_up)
     Button signUp;
 
+    @Bind(R.id.adView)
+    AdView mAdView;
+
+    private Realm mRealm = null;
+    private FirebaseAnalytics mFirebaseAnalytics;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        //startActivity(new Intent(this, TestActivity.class));
+        mRealm = Realm.getDefaultInstance();
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+
+        AlarmUtil.setAlarm(this);
 
         ButterKnife.bind(this);
+
+        if (!Hawk.get(Constant.APP_LAUNCH, false)) {
+            autoPopulateCategories();
+            Hawk.put(Constant.RECURRING_ACCOUNT_NOTIFICATION, true);
+            Hawk.put(Constant.RECURRING_EXPENSE_NOTIFICATION, true);
+        }
 
         mAuth = FirebaseAuth.getInstance();
         mAuthListener = new FirebaseAuth.AuthStateListener() {
@@ -95,7 +127,35 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                 .build();
 
 
-        //Configure facebook sign in
+        //show add
+        MobileAds.initialize(getApplicationContext(), "ca-app-pub-1642716182175443/2415407215");
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
+    }
+
+    private void autoPopulateCategories() {
+        String[] categories = new String[]{"Food",
+                "Shelter",
+                "Utilities",
+                "Clothing",
+                "Transportation",
+                "Medical",
+                "Insurance",
+                "Household",
+                "Personal",
+                "Education",
+                "Gifts",
+                "Fun Money"};
+
+        for (String category : categories) {
+            mRealm.beginTransaction();
+            ExpenseCategories expenseCategories = mRealm.createObject(ExpenseCategories.class);
+            expenseCategories.setId(getNextCategoryId());
+            expenseCategories.setCategoriesColor(getRandomColor());
+            expenseCategories.setCategoriesName(category);
+            mRealm.commitTransaction();
+        }
+        Hawk.put(Constant.APP_LAUNCH, true);
     }
 
     private void loginViaFacebook() {
@@ -153,6 +213,8 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                                     Toast.LENGTH_SHORT).show();
                         } else {
                             startActivity(DashBoardActivity.getLaunchIntent(LoginActivity.this));
+                            trackLogin(getString(R.string.google));
+                            finish();
                         }
                     }
                 });
@@ -225,6 +287,8 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
                     startActivity(DashBoardActivity.getLaunchIntent(LoginActivity.this));
+                    trackLogin(getString(R.string.login_via_email));
+                    finish();
                 } else {
                     Toast.makeText(LoginActivity.this, "Couldn't login", Toast.LENGTH_SHORT).show();
                 }
@@ -243,8 +307,37 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                                     Toast.LENGTH_SHORT).show();
                         } else {
                             startActivity(DashBoardActivity.getLaunchIntent(LoginActivity.this));
+                            finish();
+                            trackLogin(getString(R.string.facebook));
                         }
                     }
                 });
+    }
+
+
+    private int getNextCategoryId() {
+        if (mRealm.where(ExpenseCategories.class).max(RealmTable.ID) == null) {
+            return FIRST_DATA_ITEM_ID;
+        } else {
+            return mRealm.where(ExpenseCategories.class).max(RealmTable.ID).intValue() + ID_INCREMENTER;
+        }
+    }
+
+    private String getRandomColor() {
+        Random rnd = new Random();
+        int color = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
+        return String.format("#%06X", 0xFFFFFF & color);
+    }
+
+    public static Intent getLaunchIntent(Context context) {
+        return new Intent(context, LoginActivity.class);
+    }
+
+    public void trackLogin(String loginType) {
+        Bundle bundle = new Bundle();
+        bundle.putString(FirebaseAnalytics.Param.ITEM_ID, getString(R.string.id));
+        bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, loginType);
+        bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, getString(R.string.sign_in));
+        mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);
     }
 }

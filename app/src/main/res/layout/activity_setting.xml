@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.rajesh.udacitycapstoneproject.setting.SettingActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:layout_scrollFlags="scroll|enterAlways"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/dimen_8x2"
+        android:paddingRight="@dimen/dimen_8x2"
+        android:paddingTop="@dimen/dimen_8x2"
+        android:paddingStart="@dimen/dimen_8x2"
+        android:paddingEnd="@dimen/dimen_8x2">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/dimen_8x1"
+            android:text="@string/notify"
+            android:textStyle="bold"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dimen_6x7"
+            android:orientation="horizontal"
+            android:layout_marginStart="@dimen/dimen_6x7">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="@string/expense_recurring"/>
+
+            <Switch
+                android:id="@+id/sw_recurring_expense"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dimen_6x7"
+            android:orientation="horizontal"
+            android:layout_marginStart="@dimen/dimen_6x7">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="@string/account_recurring"/>
+
+            <Switch
+                android:id="@+id/sw_recurring_account"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/dimen_8x1"
+            android:layout_marginTop="@dimen/dimen_8x1"
+            android:text="@string/information"
+            android:textStyle="bold"/>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/dimen_6x7"
+            android:text="@string/tutorial"
+            android:layout_marginStart="@dimen/dimen_6x7"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/dimen_6x7"
+            android:layout_marginTop="@dimen/dimen_8x1"
+            android:text="@string/about_us"
+            android:layout_marginStart="@dimen/dimen_6x7"/>
+
+
+    </LinearLayout>
+
+</LinearLayout>

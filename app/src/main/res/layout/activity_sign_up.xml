@@ -6,10 +6,12 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingEnd="@dimen/activity_horizontal_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingStart="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.rajesh.udacitycapstoneproject.SignUpActivity">
+    tools:context=".activity.SignUpActivity">
 
     <TextView
         android:layout_width="match_parent"
@@ -36,6 +38,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/ic_close_envelope"
+                android:drawableStart="@drawable/ic_close_envelope"
                 android:hint="Email"/>
         </android.support.design.widget.TextInputLayout>
 
@@ -48,6 +51,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/ic_locked"
+                android:drawableStart="@drawable/ic_locked"
                 android:hint="Password"
                 android:inputType="textPassword"/>
         </android.support.design.widget.TextInputLayout>
@@ -61,6 +65,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/ic_locked"
+                android:drawableStart="@drawable/ic_locked"
                 android:hint="Confirm Password"
                 android:inputType="textPassword"/>
         </android.support.design.widget.TextInputLayout>
@@ -69,14 +74,15 @@
             android:id="@+id/btn_create_user"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/sign_up_btn"
             android:layout_marginLeft="@dimen/sign_up_btn"
             android:layout_marginRight="@dimen/sign_up_btn"
+            android:layout_marginStart="@dimen/sign_up_btn"
             android:layout_marginTop="@dimen/dimen_8x2"
             android:background="@color/colorPrimary"
             android:clickable="true"
+            android:contentDescription="@string/sign_up"
             android:text="@string/get_started"
             android:textColor="@android:color/white"/>
     </LinearLayout>
-
-
 </LinearLayout>
