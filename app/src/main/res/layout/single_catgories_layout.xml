@@ -10,7 +10,8 @@
         android:layout_width="@dimen/dimen_8x3"
         android:layout_height="@dimen/dimen_8x3"
         android:layout_marginRight="@dimen/dimen_4x5"
-        android:padding="@dimen/dimen_8x1"/>
+        android:padding="@dimen/dimen_8x1"
+        android:layout_marginEnd="@dimen/dimen_4x5"/>
 
     <TextView
         android:id="@+id/tv_categories_name"

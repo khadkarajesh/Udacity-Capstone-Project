@@ -130,7 +130,7 @@ public class ExpenseActivity extends ToolbarBaseActivity {
     }
 
     private void setToolbar() {
-        String submitValue = activityState == ActivityState.ADD ? "SAVE" : "UPDATE";
+        String submitValue = activityState == ActivityState.ADD ? getString(R.string.txt_save) : getString(R.string.txt_update);
         customToolbarMailingInfo.setToolbar(R.drawable.ic_arrow_back, toolbarTitle, submitValue);
         customToolbarMailingInfo.setLeftButtonClickListener(new CustomToolbar.ToolbarLeftButtonClickListener() {
             @Override
@@ -154,6 +154,11 @@ public class ExpenseActivity extends ToolbarBaseActivity {
         String expenseDescription = edtExpenseDescription.getText().toString().trim();
         String expenseAmount = edtExpenseAmount.getText().toString().trim();
 
+        if (expenseDate == null) {
+            focusView = edtExpenseDate;
+            valid = false;
+            edtExpenseDate.setError(getString(R.string.msg_empty_date));
+        }
         if (expenseDate.after(Calendar.getInstance().getTime())) {
             focusView = edtExpenseDate;
             valid = false;
@@ -184,6 +189,7 @@ public class ExpenseActivity extends ToolbarBaseActivity {
             } else {
                 updateExpense(expenseTitle, expenseDescription, expenseAmount);
             }
+            finish();
         } else {
             focusView.requestFocus();
         }

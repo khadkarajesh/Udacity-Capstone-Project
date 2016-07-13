@@ -21,7 +21,9 @@
         android:paddingBottom="@dimen/dimen_8x2"
         android:paddingLeft="@dimen/dimen_8x2"
         android:paddingRight="@dimen/dimen_8x2"
-        android:paddingTop="@dimen/dimen_8x2">
+        android:paddingTop="@dimen/dimen_8x2"
+        android:paddingEnd="@dimen/dimen_8x2"
+        android:paddingStart="@dimen/dimen_8x2">
 
         <TextView
             android:id="@+id/tv_account_name"

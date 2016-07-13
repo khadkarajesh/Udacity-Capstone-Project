@@ -9,7 +9,9 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".activity.LoginActivity">
+    tools:context=".activity.LoginActivity"
+    android:paddingEnd="@dimen/activity_horizontal_margin"
+    android:paddingStart="@dimen/activity_horizontal_margin">
 
     <TextView
         android:layout_width="match_parent"
@@ -42,7 +44,10 @@
             android:background="@color/buttonFacebook"
             android:drawableLeft="@drawable/ic_facebook"
             android:text="@string/facebook"
-            android:textColor="@android:color/white"/>
+            android:contentDescription="@string/login_via_facebook"
+            android:textColor="@android:color/white"
+            android:drawableStart="@drawable/ic_facebook"
+            android:layout_marginEnd="@dimen/dimen_8x1"/>
 
         <Button
             android:id="@+id/btn_google_login"
@@ -52,7 +57,9 @@
             android:background="@color/buttonGooglePlus"
             android:drawableLeft="@drawable/ic_google"
             android:text="@string/google"
-            android:textColor="@android:color/white"/>
+            android:contentDescription="@string/login_via_google"
+            android:textColor="@android:color/white"
+            android:drawableStart="@drawable/ic_google"/>
 
     </LinearLayout>
 
@@ -76,7 +83,9 @@
             android:paddingLeft="@dimen/dimen_8x1"
             android:paddingRight="8dp"
             android:text="@string/or"
-            android:textColor="@color/brown"/>
+            android:textColor="@color/brown"
+            android:paddingEnd="8dp"
+            android:paddingStart="@dimen/dimen_8x1"/>
 
         <View
             android:layout_width="0dp"
@@ -115,6 +124,7 @@
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary"
         android:text="@string/login"
+        android:contentDescription="@string/login_via_email"
         android:textColor="@android:color/white"/>
 
     <TextView
@@ -140,5 +150,6 @@
         android:layout_height="wrap_content"
         android:background="@color/light_yellow"
         android:text="@string/signup"
+        android:contentDescription="@string/sign_up_via_email"
         android:textColor="@android:color/white"/>
 </LinearLayout>

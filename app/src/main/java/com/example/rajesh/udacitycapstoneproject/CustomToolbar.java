@@ -89,6 +89,7 @@ public class CustomToolbar extends LinearLayout {
      */
     public void setToolbar(@IntegerRes int leftDrawable, String toolbarTitle, String rightText) {
         tvRight.setVisibility(VISIBLE);
+        tvRight.setContentDescription(rightText);
         imgButtonLeft.setImageDrawable(ContextCompat.getDrawable(getContext(), leftDrawable));
         tvToolbarTitle.setText(toolbarTitle);
         tvRight.setText(rightText);
@@ -127,7 +128,7 @@ public class CustomToolbar extends LinearLayout {
         void onRightButtonClick();
     }
 
-    @OnClick({R.id.img_btn_left,R.id.tv_right})
+    @OnClick({R.id.img_btn_left, R.id.tv_right})
     public void onClick(View view) {
 
         try {

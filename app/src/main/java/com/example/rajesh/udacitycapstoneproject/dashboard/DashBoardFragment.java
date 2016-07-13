@@ -6,7 +6,9 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.rajesh.udacitycapstoneproject.R;
@@ -27,7 +29,6 @@ import butterknife.Bind;
 import butterknife.OnClick;
 import io.realm.Realm;
 import io.realm.RealmResults;
-import timber.log.Timber;
 
 
 public class DashBoardFragment extends BaseFragment {
@@ -54,6 +55,18 @@ public class DashBoardFragment extends BaseFragment {
     @Bind(R.id.fab_menu)
     FloatingActionMenu fabMenu;
 
+    @Bind(R.id.ll_amount_container)
+    LinearLayout llAmountContainer;
+
+    @Bind(R.id.ll_money_calculator)
+    LinearLayout llMoneyCalculator;
+
+    @Bind(R.id.rl_no_account)
+    RelativeLayout rlNoAccount;
+
+    @Bind(R.id.rl_no_expense)
+    RelativeLayout rlNoExpense;
+
     Double mExpenses = 0.0;
     Double mTotalAmount = 0.0;
     Double remainingAmount = 0.0;
@@ -69,11 +82,33 @@ public class DashBoardFragment extends BaseFragment {
         super.onViewCreated(view, savedInstanceState);
 
         mRealm = Realm.getDefaultInstance();
+
         fabMenu.setClosedOnTouchOutside(true);
 
         setRecyclerViewAdapter();
 
+        RealmResults<Account> accounts = mRealm.where(Account.class).findAll();
+        RealmResults<Expense> expenses = mRealm.where(Expense.class).findAll();
 
+        if (accounts.size() <= 0) {
+            rvDashBoard.setVisibility(View.GONE);
+            llMoneyCalculator.setVisibility(View.GONE);
+            rlNoAccount.setVisibility(View.VISIBLE);
+        } else if (expenses.size() <= 0) {
+            rvDashBoard.setVisibility(View.GONE);
+            llMoneyCalculator.setVisibility(View.GONE);
+            rlNoAccount.setVisibility(View.GONE);
+            rlNoExpense.setVisibility(View.VISIBLE);
+        } else {
+            rvDashBoard.setVisibility(View.VISIBLE);
+            llMoneyCalculator.setVisibility(View.VISIBLE);
+            rlNoExpense.setVisibility(View.GONE);
+            rlNoAccount.setVisibility(View.GONE);
+            showMoneyCalculator();
+        }
+    }
+
+    private void showMoneyCalculator() {
         tvRemainingAmount.setText("" + getRemainingAmount());
 
         progressAmount.setMax(new Double(mTotalAmount).intValue());
@@ -94,7 +129,6 @@ public class DashBoardFragment extends BaseFragment {
         tvTotalAmount.setText(String.valueOf(mTotalAmount));
         tvTotalExpense.setText(String.valueOf(mExpenses));
         tvRemainingAmount.setText(String.valueOf(getRemainingAmount()));
-
     }
 
     private Double getRemainingAmount() {
@@ -132,7 +166,7 @@ public class DashBoardFragment extends BaseFragment {
         swipeToDismissTouchHelper.attachToRecyclerView(rvDashBoard);
     }
 
-    @OnClick({R.id.fab_add_expense, R.id.fab_add_account, R.id.fab_add_category})
+    @OnClick({R.id.fab_add_expense, R.id.fab_add_account, R.id.fab_add_category, R.id.iv_no_account, R.id.iv_no_expense})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.fab_add_account:
@@ -143,6 +177,12 @@ public class DashBoardFragment extends BaseFragment {
                 break;
             case R.id.fab_add_category:
                 getActivity().startActivity(CategoryEditActivity.getLaunchIntent(getActivity(), null));
+                break;
+            case R.id.iv_no_account:
+                getActivity().startActivity(AccountActivity.getLaunchIntent(getActivity(), null));
+                break;
+            case R.id.iv_no_expense:
+                getActivity().startActivity(ExpenseActivity.getLaunchIntent(getActivity(), null));
                 break;
         }
         fabMenu.close(true);

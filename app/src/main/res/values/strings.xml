@@ -40,6 +40,26 @@
     <string name="information">Information</string>
     <string name="tutorial">Tutorial</string>
     <string name="about_us">About Us</string>
+    <string name="confirm">confirm</string>
+    <string name="cancel">Cancel</string>
+    <string name="add_account_to_get_started">Add Account to Get Started</string>
+    <string name="add_expense_to_get_started">Add Expense to Get Started</string>
+    <string name="msg_empty_date">Date can\'t be empty</string>
+    <string name="login_via_facebook">Login via facebook</string>
+    <string name="login_via_google">Login via google</string>
+    <string name="login_via_email">Login via Email</string>
+    <string name="sign_up_via_email">Sign up via Email</string>
+    <string name="sign_up">Sign up</string>
+    <string name="add_expense">Add expense</string>
+    <string name="add_account">Add account</string>
+    <string name="add_category">Add category</string>
+    <string name="txt_save">SAVE</string>
+    <string name="txt_update">UPDATE</string>
+    <string name="confirmation_dialog_content">Do you want to add recurring %1$s %2$.2f to your %3$s?</string>
+    <string name="expense">expense</string>
+    <string name="account">account</string>
+    <string name="categories">Categories</string>
+    <string name="total_amount">"Total Amount "</string>
 
     <string-array name="sort_by">
         <item>Week</item>

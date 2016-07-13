@@ -13,9 +13,7 @@ import com.example.rajesh.udacitycapstoneproject.Constant;
 import com.example.rajesh.udacitycapstoneproject.CustomToolbar;
 import com.example.rajesh.udacitycapstoneproject.R;
 import com.example.rajesh.udacitycapstoneproject.base.activity.ToolbarBaseActivity;
-import com.example.rajesh.udacitycapstoneproject.expense.ExpenseActivity;
 import com.example.rajesh.udacitycapstoneproject.realm.Account;
-import com.example.rajesh.udacitycapstoneproject.realm.Expense;
 import com.example.rajesh.udacitycapstoneproject.realm.table.RealmTable;
 import com.example.rajesh.udacitycapstoneproject.utils.ActivityState;
 import com.example.rajesh.udacitycapstoneproject.utils.DateUtil;
@@ -92,7 +90,7 @@ public class AccountActivity extends ToolbarBaseActivity {
     }
 
     private void setToolbar() {
-        String submitValue = activityState == ActivityState.ADD ? "SAVE" : "UPDATE";
+        String submitValue = activityState == ActivityState.ADD ? getString(R.string.txt_save) : getString(R.string.txt_update);
         customToolbarMailingInfo.setToolbar(R.drawable.ic_arrow_back, toolbarTitle, submitValue);
         customToolbarMailingInfo.setLeftButtonClickListener(new CustomToolbar.ToolbarLeftButtonClickListener() {
             @Override
@@ -116,7 +114,11 @@ public class AccountActivity extends ToolbarBaseActivity {
         String accountTitle = edtAccountTitle.getText().toString().trim();
         String accountAmount = edtAccountAmount.getText().toString().trim();
 
-
+        if (accountCreatedDate == null) {
+            focusView = edtAccountCreatedDate;
+            valid = false;
+            edtAccountCreatedDate.setError(getString(R.string.msg_empty_date));
+        }
         if (accountCreatedDate.after(Calendar.getInstance().getTime())) {
             focusView = edtAccountCreatedDate;
             valid = false;
@@ -136,11 +138,13 @@ public class AccountActivity extends ToolbarBaseActivity {
         }
 
         if (valid) {
+            Timber.d("save button clicked");
             if (activityState == ActivityState.ADD) {
                 saveAccount(accountTitle, accountAmount);
             } else {
                 updateAccount(accountTitle, accountAmount);
             }
+            finish();
         } else {
             focusView.requestFocus();
         }
@@ -160,7 +164,7 @@ public class AccountActivity extends ToolbarBaseActivity {
     private void saveAccount(String accountTitle, String accountAmount) {
         mRealm.beginTransaction();
         Account account = mRealm.createObject(Account.class);
-        account.setId(getNextExpenseId());
+        account.setId(getNextAccountId());
         account.setTitle(accountTitle);
         account.setAccountAmount(Double.valueOf(accountAmount));
         account.setDateCreated(accountCreatedDate);
@@ -189,7 +193,7 @@ public class AccountActivity extends ToolbarBaseActivity {
         datePickerDialog.show();
     }
 
-    private int getNextExpenseId() {
+    private int getNextAccountId() {
         if (mRealm.where(Account.class).max(RealmTable.ID) == null) {
             return FIRST_DATA_ITEM_ID;
         } else {

@@ -1,5 +1,7 @@
 package com.example.rajesh.udacitycapstoneproject.setting;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -29,13 +31,13 @@ public class SettingActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setToolbar();
 
-        swRecurringAccount.setChecked(Hawk.get(Constant.RECURRING_ACCOUNT_NOTFICATION, false));
+        swRecurringAccount.setChecked(Hawk.get(Constant.RECURRING_ACCOUNT_NOTIFICATION, false));
         swRecurringExpense.setChecked(Hawk.get(Constant.RECURRING_EXPENSE_NOTIFICATION, false));
 
         swRecurringAccount.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                Hawk.put(Constant.RECURRING_ACCOUNT_NOTFICATION, swRecurringAccount.isChecked() ? true : false);
+                Hawk.put(Constant.RECURRING_ACCOUNT_NOTIFICATION, swRecurringAccount.isChecked() ? true : false);
             }
         });
 
@@ -64,5 +66,9 @@ public class SettingActivity extends BaseActivity {
     @Override
     protected int getLayout() {
         return R.layout.activity_setting;
+    }
+
+    public static Intent getLaunchIntent(Context context) {
+        return new Intent(context, SettingActivity.class);
     }
 }

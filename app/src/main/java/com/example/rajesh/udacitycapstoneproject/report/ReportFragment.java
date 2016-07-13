@@ -218,7 +218,7 @@ public class ReportFragment extends BaseFragment implements OnChartValueSelected
     }
 
     private void setData() {
-        PieDataSet dataSet = new PieDataSet(getExpenses(), "Categories");
+        PieDataSet dataSet = new PieDataSet(getExpenses(), getActivity().getString(R.string.categories));
         dataSet.setSliceSpace(3f);
         dataSet.setSelectionShift(5f);
 
@@ -243,7 +243,7 @@ public class ReportFragment extends BaseFragment implements OnChartValueSelected
 
 
     private SpannableString generateCenterSpannableText() {
-        SpannableString s = new SpannableString("Total Amount " + mTotalAmount);
+        SpannableString s = new SpannableString(getActivity().getString(R.string.total_amount) + mTotalAmount);
         return s;
     }
 

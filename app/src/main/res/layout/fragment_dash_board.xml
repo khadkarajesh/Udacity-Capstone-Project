@@ -1,15 +1,16 @@
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:fab="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+                                                 xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                 xmlns:fab="http://schemas.android.com/apk/res-auto"
+                                                 xmlns:tools="http://schemas.android.com/tools"
+                                                 android:layout_width="match_parent"
+                                                 android:layout_height="match_parent">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <LinearLayout
+            android:id="@+id/ll_money_calculator"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
@@ -24,7 +25,9 @@
                 android:orientation="vertical"
                 android:paddingLeft="@dimen/dimen_8x2"
                 android:paddingRight="@dimen/dimen_8x2"
-                android:paddingTop="@dimen/dimen_8x2">
+                android:paddingTop="@dimen/dimen_8x2"
+                android:paddingStart="@dimen/dimen_8x2"
+                android:paddingEnd="@dimen/dimen_8x2">
 
                 <LinearLayout
                     android:id="@+id/ll_amount_container"
@@ -39,7 +42,8 @@
                         android:layout_weight="1"
                         android:text="Amount"
                         android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-                        android:textColor="@android:color/white" />
+                        android:textColor="@android:color/white"
+                        android:layout_marginEnd="@dimen/dimen_8x1"/>
 
                     <ProgressBar
                         android:id="@+id/progress_amount"
@@ -49,7 +53,8 @@
                         android:layout_gravity="center_vertical"
                         android:layout_marginRight="@dimen/dimen_8x2"
                         android:layout_weight="3"
-                        android:progressDrawable="@drawable/green_progress_horizontal" />
+                        android:progressDrawable="@drawable/green_progress_horizontal"
+                        android:layout_marginEnd="@dimen/dimen_8x2"/>
 
                     <TextView
                         android:id="@+id/tv_total_amount"
@@ -57,7 +62,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="0"
-                        android:textColor="@android:color/white" />
+                        android:textColor="@android:color/white"/>
 
                 </LinearLayout>
 
@@ -76,7 +81,8 @@
                         android:layout_weight="1"
                         android:text="Expense"
                         android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-                        android:textColor="@android:color/white" />
+                        android:textColor="@android:color/white"
+                        android:layout_marginEnd="@dimen/dimen_8x1"/>
 
                     <ProgressBar
                         android:id="@+id/progress_expense"
@@ -86,7 +92,8 @@
                         android:layout_gravity="center_vertical"
                         android:layout_marginRight="@dimen/dimen_8x2"
                         android:layout_weight="3"
-                        android:progressDrawable="@drawable/red_progress_horizontal" />
+                        android:progressDrawable="@drawable/red_progress_horizontal"
+                        android:layout_marginEnd="@dimen/dimen_8x2"/>
 
                     <TextView
                         android:id="@+id/tv_total_expense"
@@ -94,7 +101,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="200"
-                        android:textColor="@android:color/white" />
+                        android:textColor="@android:color/white"/>
 
                 </LinearLayout>
 
@@ -108,7 +115,8 @@
                     android:layout_below="@id/ll_expense_container"
                     android:layout_marginTop="@dimen/dimen_8x1"
                     android:text="400"
-                    android:textColor="@android:color/white" />
+                    android:textColor="@android:color/white"
+                    android:layout_alignParentEnd="true"/>
 
             </RelativeLayout>
         </LinearLayout>
@@ -124,7 +132,19 @@
         android:paddingRight="@dimen/dimen_8x2"
         android:paddingTop="@dimen/dimen_8x1"
         android:scrollbarStyle="outsideOverlay"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:paddingEnd="@dimen/dimen_8x2"
+        android:paddingStart="@dimen/dimen_8x2"/>
+
+    <include
+        layout="@layout/no_account_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <include
+        layout="@layout/no_expense_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
     <com.github.clans.fab.FloatingActionMenu
         android:id="@+id/fab_menu"
@@ -133,24 +153,27 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_gravity="bottom|end"
-        fab:menu_backgroundColor="#cca8a8a8"
-        fab:menu_animationDelayPerItem="0"
-        android:paddingRight="@dimen/dimen_8x2"
         android:paddingBottom="@dimen/dimen_8x2"
+        android:paddingRight="@dimen/dimen_8x2"
+        app:fab_progress_backgroundColor="#4D000000"
+        app:fab_progress_showBackground="true"
+        fab:menu_animationDelayPerItem="0"
+        fab:menu_backgroundColor="#cca8a8a8"
         fab:menu_labels_hideAnimation="@anim/jump_to_down"
         fab:menu_labels_showAnimation="@anim/jump_from_down"
         fab:menu_labels_style="@style/MenuLabelsStyle"
-        app:fab_progress_showBackground="true"
-        app:fab_progress_backgroundColor="#4D000000"
-        fab:menu_shadowColor="#444">
+        fab:menu_shadowColor="#444"
+        android:paddingEnd="@dimen/dimen_8x2"
+        android:layout_alignParentEnd="true">
 
         <com.github.clans.fab.FloatingActionButton
             android:id="@+id/fab_add_expense"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_menu_gallery"
+            android:contentDescription="@string/add_expense"
             fab:fab_label="Add Expense"
-            fab:fab_size="mini" />
+            fab:fab_size="mini"/>
 
         <com.github.clans.fab.FloatingActionButton
             android:id="@+id/fab_add_account"
@@ -158,7 +181,8 @@
             android:layout_height="wrap_content"
             android:src="@drawable/ic_menu_camera"
             fab:fab_label="Add Account"
-            fab:fab_size="mini" />
+            android:contentDescription="@string/add_account"
+            fab:fab_size="mini"/>
 
         <com.github.clans.fab.FloatingActionButton
             android:id="@+id/fab_add_category"
@@ -166,7 +190,8 @@
             android:layout_height="wrap_content"
             android:src="@drawable/ic_menu_camera"
             fab:fab_label="Add Category"
-            fab:fab_size="mini" />
+            android:contentDescription="@string/add_category"
+            fab:fab_size="mini"/>
     </com.github.clans.fab.FloatingActionMenu>
 </android.support.design.widget.CoordinatorLayout>
 
