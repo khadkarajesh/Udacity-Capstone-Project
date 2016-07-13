@@ -32,6 +32,7 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FacebookAuthProvider;
@@ -72,7 +73,8 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
     @Bind(R.id.sign_up)
     Button signUp;
 
-    Realm mRealm = null;
+    private Realm mRealm = null;
+    private FirebaseAnalytics mFirebaseAnalytics;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,6 +82,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         setContentView(R.layout.activity_login);
         //startActivity(new Intent(this, TestActivity.class));
         mRealm = Realm.getDefaultInstance();
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
         AlarmUtil.setAlarm(this);
 
@@ -203,6 +206,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                                     Toast.LENGTH_SHORT).show();
                         } else {
                             startActivity(DashBoardActivity.getLaunchIntent(LoginActivity.this));
+                            trackLogin("Google");
                             finish();
                         }
                     }
@@ -276,6 +280,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
                     startActivity(DashBoardActivity.getLaunchIntent(LoginActivity.this));
+                    trackLogin("Email");
                     finish();
                 } else {
                     Toast.makeText(LoginActivity.this, "Couldn't login", Toast.LENGTH_SHORT).show();
@@ -296,6 +301,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                         } else {
                             startActivity(DashBoardActivity.getLaunchIntent(LoginActivity.this));
                             finish();
+                            trackLogin("Facebook");
                         }
                     }
                 });
@@ -318,5 +324,13 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
 
     public static Intent getLaunchIntent(Context context) {
         return new Intent(context, LoginActivity.class);
+    }
+
+    public void trackLogin(String loginType) {
+        Bundle bundle = new Bundle();
+        bundle.putString(FirebaseAnalytics.Param.ITEM_ID, "ID");
+        bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, loginType);
+        bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, "Sign in");
+        mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);
     }
 }
