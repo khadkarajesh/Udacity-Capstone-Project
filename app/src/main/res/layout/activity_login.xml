@@ -44,6 +44,7 @@
             android:background="@color/buttonFacebook"
             android:drawableLeft="@drawable/ic_facebook"
             android:text="@string/facebook"
+            android:contentDescription="@string/login_via_facebook"
             android:textColor="@android:color/white"
             android:drawableStart="@drawable/ic_facebook"
             android:layout_marginEnd="@dimen/dimen_8x1"/>
@@ -56,6 +57,7 @@
             android:background="@color/buttonGooglePlus"
             android:drawableLeft="@drawable/ic_google"
             android:text="@string/google"
+            android:contentDescription="@string/login_via_google"
             android:textColor="@android:color/white"
             android:drawableStart="@drawable/ic_google"/>
 
@@ -122,6 +124,7 @@
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary"
         android:text="@string/login"
+        android:contentDescription="@string/login_via_email"
         android:textColor="@android:color/white"/>
 
     <TextView
@@ -147,5 +150,6 @@
         android:layout_height="wrap_content"
         android:background="@color/light_yellow"
         android:text="@string/signup"
+        android:contentDescription="@string/sign_up_via_email"
         android:textColor="@android:color/white"/>
 </LinearLayout>

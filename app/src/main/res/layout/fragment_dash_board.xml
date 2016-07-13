@@ -171,6 +171,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_menu_gallery"
+            android:contentDescription="@string/add_expense"
             fab:fab_label="Add Expense"
             fab:fab_size="mini"/>
 
@@ -180,6 +181,7 @@
             android:layout_height="wrap_content"
             android:src="@drawable/ic_menu_camera"
             fab:fab_label="Add Account"
+            android:contentDescription="@string/add_account"
             fab:fab_size="mini"/>
 
         <com.github.clans.fab.FloatingActionButton
@@ -188,6 +190,7 @@
             android:layout_height="wrap_content"
             android:src="@drawable/ic_menu_camera"
             fab:fab_label="Add Category"
+            android:contentDescription="@string/add_category"
             fab:fab_size="mini"/>
     </com.github.clans.fab.FloatingActionMenu>
 </android.support.design.widget.CoordinatorLayout>
