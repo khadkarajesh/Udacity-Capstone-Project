@@ -130,7 +130,7 @@ public class ExpenseActivity extends ToolbarBaseActivity {
     }
 
     private void setToolbar() {
-        String submitValue = activityState == ActivityState.ADD ? "SAVE" : "UPDATE";
+        String submitValue = activityState == ActivityState.ADD ? getString(R.string.txt_save) : getString(R.string.txt_update);
         customToolbarMailingInfo.setToolbar(R.drawable.ic_arrow_back, toolbarTitle, submitValue);
         customToolbarMailingInfo.setLeftButtonClickListener(new CustomToolbar.ToolbarLeftButtonClickListener() {
             @Override

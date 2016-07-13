@@ -2,9 +2,6 @@ package com.example.rajesh.udacitycapstoneproject.utils;
 
 import java.text.SimpleDateFormat;
 
-/**
- * Created by rajesh on 7/11/16.
- */
 public class DateUtil {
     private static final String DATE_FORMAT = "MMM dd,yyy";
 

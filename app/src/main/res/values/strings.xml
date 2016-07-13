@@ -50,9 +50,16 @@
     <string name="login_via_email">Login via Email</string>
     <string name="sign_up_via_email">Sign up via Email</string>
     <string name="sign_up">Sign up</string>
-    <string name="add_expense">add expense</string>
+    <string name="add_expense">Add expense</string>
     <string name="add_account">Add account</string>
     <string name="add_category">Add category</string>
+    <string name="txt_save">SAVE</string>
+    <string name="txt_update">UPDATE</string>
+    <string name="confirmation_dialog_content">Do you want to add recurring %1$s %2$.2f to your %3$s?</string>
+    <string name="expense">expense</string>
+    <string name="account">account</string>
+    <string name="categories">Categories</string>
+    <string name="total_amount">"Total Amount "</string>
 
     <string-array name="sort_by">
         <item>Week</item>

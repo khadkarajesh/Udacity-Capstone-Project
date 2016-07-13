@@ -17,7 +17,6 @@ import java.util.Date;
 import io.realm.Realm;
 
 public class ConfirmationActivity extends BaseActivity {
-    private static final String CONFIRMATION_DIALOG_CONTENT_TEMPLATE = "Do you want to add recurring ";
     private static final int FIRST_DATA_ITEM_ID = 1;
     private static final int ID_INCREMENTER = 1;
 
@@ -41,12 +40,12 @@ public class ConfirmationActivity extends BaseActivity {
 
         if (intentAction.equals(Constant.ADD_RECURRING_EXPENSE_ACTION)) {
             mExpense = mRealm.where(Expense.class).equalTo(RealmTable.ID, id).findFirst();
-            title = "Add Expense";
-            content = CONFIRMATION_DIALOG_CONTENT_TEMPLATE + " " + " expense " + mExpense.getExpenseAmount() + "?";
+            title = getString(R.string.add_expense);
+            content = getString(R.string.confirmation_dialog_content, getString(R.string.expense), mExpense.getExpenseAmount(), getString(R.string.expense));
         } else if (intentAction.equals(Constant.ADD_RECURRING_ACCOUNT_ACTION)) {
             mAccount = mRealm.where(Account.class).equalTo(RealmTable.ID, id).findFirst();
-            title = "Add Account";
-            content = CONFIRMATION_DIALOG_CONTENT_TEMPLATE + " " + " account " + mAccount.getAccountAmount() + "?";
+            title = getString(R.string.add_account);
+            content = getString(R.string.confirmation_dialog_content, getString(R.string.account), mAccount.getAccountAmount(), getString(R.string.account));
         }
 
         showConfirmationDialog(title, content);

@@ -79,7 +79,6 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-
         mRealm = Realm.getDefaultInstance();
 
         AlarmUtil.setAlarm(this);
