@@ -39,7 +39,6 @@ import butterknife.ButterKnife;
 public class DashBoardActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    private static final String TAG = DashBoardActivity.class.getSimpleName();
     @Bind(R.id.toolbar)
     Toolbar toolbar;
 
