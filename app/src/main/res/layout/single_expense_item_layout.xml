@@ -11,7 +11,9 @@
                                     card_view:cardBackgroundColor="@android:color/white"
                                     card_view:cardCornerRadius="3dp"
                                     card_view:cardElevation="2dp"
-                                    card_view:cardUseCompatPadding="true">
+                                    card_view:cardUseCompatPadding="true"
+                                    android:layout_marginEnd="@dimen/dimen_8x2"
+                                    android:layout_marginStart="@dimen/dimen_8x2">
 
     <LinearLayout
         android:id="@+id/ll_dashboard_container"
@@ -22,14 +24,16 @@
         android:orientation="horizontal"
         android:paddingBottom="@dimen/dimen_8x2"
         android:paddingLeft="@dimen/dimen_8x1"
-        android:paddingTop="@dimen/dimen_8x2">
+        android:paddingTop="@dimen/dimen_8x2"
+        android:paddingStart="@dimen/dimen_8x1">
 
         <com.example.rajesh.udacitycapstoneproject.widget.CircularView
             android:id="@+id/iv_categories_indicator"
             android:layout_width="@dimen/dimen_8x3"
             android:layout_height="@dimen/dimen_8x3"
             android:layout_marginRight="@dimen/dimen_4x5"
-            android:padding="@dimen/dimen_8x1"/>
+            android:padding="@dimen/dimen_8x1"
+            android:layout_marginEnd="@dimen/dimen_4x5"/>
 
         <TextView
             android:id="@+id/tv_expense_title"

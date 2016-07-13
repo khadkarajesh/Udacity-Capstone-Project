@@ -13,7 +13,9 @@
         android:paddingLeft="@dimen/dimen_8x2"
         android:paddingRight="@dimen/dimen_8x2"
         android:paddingTop="@dimen/dimen_8x1"
-        android:scrollbarStyle="outsideOverlay"/>
+        android:scrollbarStyle="outsideOverlay"
+        android:paddingStart="@dimen/dimen_8x2"
+        android:paddingEnd="@dimen/dimen_8x2"/>
 
     <include
         layout="@layout/no_expense_layout"

@@ -25,7 +25,9 @@
                 android:orientation="vertical"
                 android:paddingLeft="@dimen/dimen_8x2"
                 android:paddingRight="@dimen/dimen_8x2"
-                android:paddingTop="@dimen/dimen_8x2">
+                android:paddingTop="@dimen/dimen_8x2"
+                android:paddingStart="@dimen/dimen_8x2"
+                android:paddingEnd="@dimen/dimen_8x2">
 
                 <LinearLayout
                     android:id="@+id/ll_amount_container"
@@ -40,7 +42,8 @@
                         android:layout_weight="1"
                         android:text="Amount"
                         android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-                        android:textColor="@android:color/white"/>
+                        android:textColor="@android:color/white"
+                        android:layout_marginEnd="@dimen/dimen_8x1"/>
 
                     <ProgressBar
                         android:id="@+id/progress_amount"
@@ -50,7 +53,8 @@
                         android:layout_gravity="center_vertical"
                         android:layout_marginRight="@dimen/dimen_8x2"
                         android:layout_weight="3"
-                        android:progressDrawable="@drawable/green_progress_horizontal"/>
+                        android:progressDrawable="@drawable/green_progress_horizontal"
+                        android:layout_marginEnd="@dimen/dimen_8x2"/>
 
                     <TextView
                         android:id="@+id/tv_total_amount"
@@ -77,7 +81,8 @@
                         android:layout_weight="1"
                         android:text="Expense"
                         android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-                        android:textColor="@android:color/white"/>
+                        android:textColor="@android:color/white"
+                        android:layout_marginEnd="@dimen/dimen_8x1"/>
 
                     <ProgressBar
                         android:id="@+id/progress_expense"
@@ -87,7 +92,8 @@
                         android:layout_gravity="center_vertical"
                         android:layout_marginRight="@dimen/dimen_8x2"
                         android:layout_weight="3"
-                        android:progressDrawable="@drawable/red_progress_horizontal"/>
+                        android:progressDrawable="@drawable/red_progress_horizontal"
+                        android:layout_marginEnd="@dimen/dimen_8x2"/>
 
                     <TextView
                         android:id="@+id/tv_total_expense"
@@ -109,7 +115,8 @@
                     android:layout_below="@id/ll_expense_container"
                     android:layout_marginTop="@dimen/dimen_8x1"
                     android:text="400"
-                    android:textColor="@android:color/white"/>
+                    android:textColor="@android:color/white"
+                    android:layout_alignParentEnd="true"/>
 
             </RelativeLayout>
         </LinearLayout>
@@ -125,7 +132,9 @@
         android:paddingRight="@dimen/dimen_8x2"
         android:paddingTop="@dimen/dimen_8x1"
         android:scrollbarStyle="outsideOverlay"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:paddingEnd="@dimen/dimen_8x2"
+        android:paddingStart="@dimen/dimen_8x2"/>
 
     <include
         layout="@layout/no_account_layout"
@@ -153,7 +162,9 @@
         fab:menu_labels_hideAnimation="@anim/jump_to_down"
         fab:menu_labels_showAnimation="@anim/jump_from_down"
         fab:menu_labels_style="@style/MenuLabelsStyle"
-        fab:menu_shadowColor="#444">
+        fab:menu_shadowColor="#444"
+        android:paddingEnd="@dimen/dimen_8x2"
+        android:layout_alignParentEnd="true">
 
         <com.github.clans.fab.FloatingActionButton
             android:id="@+id/fab_add_expense"

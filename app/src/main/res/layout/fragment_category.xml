@@ -11,5 +11,7 @@
         android:paddingLeft="@dimen/dimen_8x2"
         android:paddingRight="@dimen/dimen_8x2"
         android:paddingTop="@dimen/dimen_8x1"
-        android:scrollbarStyle="outsideOverlay"/>
+        android:scrollbarStyle="outsideOverlay"
+        android:paddingEnd="@dimen/dimen_8x2"
+        android:paddingStart="@dimen/dimen_8x2"/>
 </FrameLayout>

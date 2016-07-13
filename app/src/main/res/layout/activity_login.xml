@@ -9,7 +9,9 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".activity.LoginActivity">
+    tools:context=".activity.LoginActivity"
+    android:paddingEnd="@dimen/activity_horizontal_margin"
+    android:paddingStart="@dimen/activity_horizontal_margin">
 
     <TextView
         android:layout_width="match_parent"
@@ -42,7 +44,9 @@
             android:background="@color/buttonFacebook"
             android:drawableLeft="@drawable/ic_facebook"
             android:text="@string/facebook"
-            android:textColor="@android:color/white"/>
+            android:textColor="@android:color/white"
+            android:drawableStart="@drawable/ic_facebook"
+            android:layout_marginEnd="@dimen/dimen_8x1"/>
 
         <Button
             android:id="@+id/btn_google_login"
@@ -52,7 +56,8 @@
             android:background="@color/buttonGooglePlus"
             android:drawableLeft="@drawable/ic_google"
             android:text="@string/google"
-            android:textColor="@android:color/white"/>
+            android:textColor="@android:color/white"
+            android:drawableStart="@drawable/ic_google"/>
 
     </LinearLayout>
 
@@ -76,7 +81,9 @@
             android:paddingLeft="@dimen/dimen_8x1"
             android:paddingRight="8dp"
             android:text="@string/or"
-            android:textColor="@color/brown"/>
+            android:textColor="@color/brown"
+            android:paddingEnd="8dp"
+            android:paddingStart="@dimen/dimen_8x1"/>
 
         <View
             android:layout_width="0dp"

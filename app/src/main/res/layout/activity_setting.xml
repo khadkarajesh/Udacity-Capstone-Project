@@ -23,7 +23,9 @@
         android:orientation="vertical"
         android:paddingLeft="@dimen/dimen_8x2"
         android:paddingRight="@dimen/dimen_8x2"
-        android:paddingTop="@dimen/dimen_8x2">
+        android:paddingTop="@dimen/dimen_8x2"
+        android:paddingStart="@dimen/dimen_8x2"
+        android:paddingEnd="@dimen/dimen_8x2">
 
         <TextView
             android:layout_width="match_parent"
@@ -36,7 +38,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/dimen_6x7"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_marginStart="@dimen/dimen_6x7">
 
             <TextView
                 android:layout_width="0dp"
@@ -55,7 +58,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/dimen_6x7"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_marginStart="@dimen/dimen_6x7">
 
             <TextView
                 android:layout_width="0dp"
@@ -82,14 +86,16 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginLeft="@dimen/dimen_6x7"
-            android:text="@string/tutorial"/>
+            android:text="@string/tutorial"
+            android:layout_marginStart="@dimen/dimen_6x7"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginLeft="@dimen/dimen_6x7"
             android:layout_marginTop="@dimen/dimen_8x1"
-            android:text="@string/about_us"/>
+            android:text="@string/about_us"
+            android:layout_marginStart="@dimen/dimen_6x7"/>
 
 
     </LinearLayout>

@@ -149,7 +149,7 @@ public class DashBoardActivity extends AppCompatActivity
         switch (id) {
             case R.id.nav_account:
                 fragment = new AccountFragment();
-                fragmentTag = "NewFragment";
+                fragmentTag = Constant.FragmentTag.ACCOUNT_FRAGMENT;
                 toolbarTitle = ACCOUNTS_TITLE;
                 break;
             case R.id.nav_categories:

@@ -20,7 +20,8 @@
         android:orientation="horizontal"
         android:paddingBottom="@dimen/dimen_8x2"
         android:paddingLeft="@dimen/dimen_8x1"
-        android:paddingTop="@dimen/dimen_8x2">
+        android:paddingTop="@dimen/dimen_8x2"
+        android:paddingStart="@dimen/dimen_8x1">
 
         <com.example.rajesh.udacitycapstoneproject.widget.CircularView
             android:id="@+id/iv_categories_indicator"
@@ -28,7 +29,8 @@
             android:layout_height="48dp"
             android:layout_marginRight="20dp"
             android:background="@drawable/circular_shape"
-            android:padding="@dimen/dimen_8x1"/>
+            android:padding="@dimen/dimen_8x1"
+            android:layout_marginEnd="20dp"/>
 
         <TextView
             android:id="@+id/tv_categories_title"

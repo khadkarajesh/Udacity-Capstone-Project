@@ -9,7 +9,9 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".activity.SignUpActivity">
+    tools:context=".activity.SignUpActivity"
+    android:paddingEnd="@dimen/activity_horizontal_margin"
+    android:paddingStart="@dimen/activity_horizontal_margin">
 
     <TextView
         android:layout_width="match_parent"
@@ -36,7 +38,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/ic_close_envelope"
-                android:hint="Email"/>
+                android:hint="Email"
+                android:drawableStart="@drawable/ic_close_envelope"/>
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
@@ -49,7 +52,8 @@
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/ic_locked"
                 android:hint="Password"
-                android:inputType="textPassword"/>
+                android:inputType="textPassword"
+                android:drawableStart="@drawable/ic_locked"/>
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
@@ -62,7 +66,8 @@
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/ic_locked"
                 android:hint="Confirm Password"
-                android:inputType="textPassword"/>
+                android:inputType="textPassword"
+                android:drawableStart="@drawable/ic_locked"/>
         </android.support.design.widget.TextInputLayout>
 
         <Button
@@ -75,7 +80,9 @@
             android:background="@color/colorPrimary"
             android:clickable="true"
             android:text="@string/get_started"
-            android:textColor="@android:color/white"/>
+            android:textColor="@android:color/white"
+            android:layout_marginEnd="@dimen/sign_up_btn"
+            android:layout_marginStart="@dimen/sign_up_btn"/>
     </LinearLayout>
 
 
