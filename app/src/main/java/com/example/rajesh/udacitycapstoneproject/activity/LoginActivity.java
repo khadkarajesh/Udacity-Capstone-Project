@@ -76,6 +76,9 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
     @Bind(R.id.sign_up)
     Button signUp;
 
+    @Bind(R.id.adView)
+    AdView mAdView;
+
     private Realm mRealm = null;
     private FirebaseAnalytics mFirebaseAnalytics;
 
@@ -124,10 +127,8 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                 .build();
 
 
-        //Configure facebook sign in
-
+        //show add
         MobileAds.initialize(getApplicationContext(), "ca-app-pub-1642716182175443/2415407215");
-        AdView mAdView = (AdView) findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
     }
