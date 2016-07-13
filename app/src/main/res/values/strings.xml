@@ -60,6 +60,8 @@
     <string name="account">account</string>
     <string name="categories">Categories</string>
     <string name="total_amount">"Total Amount "</string>
+    <string name="id">ID</string>
+    <string name="sign_in">sign in</string>
 
     <string-array name="sort_by">
         <item>Week</item>
