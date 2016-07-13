@@ -91,9 +91,10 @@ public class SignUpActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (!task.isSuccessful()) {
-                    Toast.makeText(SignUpActivity.this, "failed to complete task "+task.getException(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SignUpActivity.this, "failed to complete task " + task.getException(), Toast.LENGTH_SHORT).show();
                 } else {
                     startActivity(DashBoardActivity.getLaunchIntent(SignUpActivity.this));
+                    finish();
                 }
             }
         });
