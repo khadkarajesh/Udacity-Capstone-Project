@@ -122,4 +122,10 @@ public class ConfirmationActivity extends BaseActivity {
             return mRealm.where(Account.class).max(RealmTable.ID).intValue() + ID_INCREMENTER;
         }
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mRealm.close();
+    }
 }

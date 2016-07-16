@@ -340,4 +340,10 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, getString(R.string.sign_in));
         mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mRealm.close();
+    }
 }

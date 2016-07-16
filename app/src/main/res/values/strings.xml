@@ -62,6 +62,8 @@
     <string name="total_amount">"Total Amount "</string>
     <string name="id">ID</string>
     <string name="sign_in">sign in</string>
+    <string name="expense_list">expense list</string>
+    <string name="loading_expense">loading expense</string>
 
     <string-array name="sort_by">
         <item>Week</item>

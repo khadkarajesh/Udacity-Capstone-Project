@@ -194,4 +194,10 @@ public class DashBoardFragment extends BaseFragment {
         expense.deleteFromRealm();
         mRealm.commitTransaction();
     }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mRealm.close();
+    }
 }
