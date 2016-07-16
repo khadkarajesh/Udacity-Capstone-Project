@@ -15,6 +15,7 @@ import retrofit.Retrofit;
 @Module
 public class NetworkModule {
     private final String END_POINT = "http://api.openweathermap.org/";
+
     @Provides
     @Singleton
     public OkHttpClient getOkHttpClient() {
@@ -23,7 +24,7 @@ public class NetworkModule {
 
     @Provides
     @Singleton
-    public GsonConverterFactory getGsonConverterFactory() {
+    public GsonConverterFactory getGSONConverterFactory() {
         return GsonConverterFactory.create();
     }
 
