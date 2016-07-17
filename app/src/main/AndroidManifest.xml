@@ -60,6 +60,13 @@
 
         <activity android:name=".TestActivity">
         </activity>
+
+        <provider
+            android:name=".data.ExpenseTrackerProvider"
+            android:authorities="com.example.rajesh.udacitycapstoneproject"
+            android:exported="false"
+            android:syncable="true"/>
+
     </application>
 
 </manifest>
