@@ -3,6 +3,8 @@
           package="com.example.rajesh.udacitycapstoneproject">
 
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
 
     <application
         android:name=".ExpenseTrackerApp"
@@ -57,8 +59,18 @@
         <activity
             android:name=".notification.ConfirmationActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
-
         <activity android:name=".TestActivity">
+        </activity>
+
+        <provider
+            android:name=".data.ExpenseTrackerProvider"
+            android:authorities="com.example.rajesh.udacitycapstoneproject"
+            android:exported="false"
+            android:syncable="true"/>
+
+        <activity
+            android:name=".weather.WeatherActivity"
+            android:theme="@style/AppTheme.NoActionBar">
         </activity>
     </application>
 

@@ -43,4 +43,6 @@
     <dimen name="dimen_4x5">20dp</dimen>
     <dimen name="dimen_6x7">42dp</dimen>
     <dimen name="dimen_10x10">100dp</dimen>
+    <dimen name="dimen_text_7x5">35sp</dimen>
+    <dimen name="dimen_text_6x5">30sp</dimen>
 </resources>

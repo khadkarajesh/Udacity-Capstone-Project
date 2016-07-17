@@ -2,6 +2,9 @@ package com.example.rajesh.udacitycapstoneproject;
 
 import android.app.Application;
 
+import com.example.rajesh.udacitycapstoneproject.dagger.component.DaggerExpenseTrackerComponent;
+import com.example.rajesh.udacitycapstoneproject.dagger.component.ExpenseTrackerComponent;
+import com.example.rajesh.udacitycapstoneproject.dagger.module.NetworkModule;
 import com.facebook.stetho.Stetho;
 import com.orhanobut.hawk.Hawk;
 import com.orhanobut.hawk.HawkBuilder;
@@ -13,6 +16,8 @@ import timber.log.Timber;
 
 
 public class ExpenseTrackerApp extends Application {
+    public static ExpenseTrackerComponent expenseTrackerComponent;
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -26,6 +31,13 @@ public class ExpenseTrackerApp extends Application {
         }
 
         initializeHawk();
+
+        expenseTrackerComponent = DaggerExpenseTrackerComponent
+                .builder()
+                .networkModule(new NetworkModule())
+                .build();
+
+        Stetho.initializeWithDefaults(this);
     }
 
     private void initializeHawk() {
@@ -34,5 +46,9 @@ public class ExpenseTrackerApp extends Application {
                 .setStorage(HawkBuilder.newSharedPrefStorage(this))
                 .setLogLevel(LogLevel.FULL)
                 .build();
+    }
+
+    public static ExpenseTrackerComponent getExpenseTrackerComponent() {
+        return expenseTrackerComponent;
     }
 }

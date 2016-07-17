@@ -30,6 +30,7 @@ import com.example.rajesh.udacitycapstoneproject.dashboard.DashBoardFragment;
 import com.example.rajesh.udacitycapstoneproject.expense.recurring.RecurringFragment;
 import com.example.rajesh.udacitycapstoneproject.report.ReportActivity;
 import com.example.rajesh.udacitycapstoneproject.setting.SettingActivity;
+import com.example.rajesh.udacitycapstoneproject.weather.WeatherActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -147,6 +148,10 @@ public class DashBoardActivity extends BaseActivity
         }
         if (id == R.id.nav_settings) {
             startActivity(SettingActivity.getLaunchIntent(this));
+            return true;
+        }
+        if (id == R.id.nav_weather) {
+            startActivity(WeatherActivity.getLaunchIntent(this));
             return true;
         }
 
