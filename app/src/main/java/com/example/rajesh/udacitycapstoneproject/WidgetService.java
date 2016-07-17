@@ -2,22 +2,15 @@ package com.example.rajesh.udacitycapstoneproject;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
+import android.database.Cursor;
 import android.os.Binder;
-import android.os.Handler;
-import android.os.Looper;
 import android.widget.RemoteViews;
 import android.widget.RemoteViewsService;
 
 import com.example.rajesh.udacitycapstoneproject.activity.LoginActivity;
-import com.example.rajesh.udacitycapstoneproject.realm.Expense;
-import com.example.rajesh.udacitycapstoneproject.realm.table.RealmTable;
-import com.example.rajesh.udacitycapstoneproject.utils.MonthTimeStamp;
+import com.example.rajesh.udacitycapstoneproject.data.ExpenseTrackerContract;
 
-import java.util.Date;
-
-import io.realm.Realm;
-import io.realm.RealmResults;
+import timber.log.Timber;
 
 
 public class WidgetService extends RemoteViewsService {
@@ -29,20 +22,10 @@ public class WidgetService extends RemoteViewsService {
 
 class StackRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
     private Context mContext;
-    private RealmResults<Expense> expenses;
+    private Cursor cursor;
 
     public StackRemoteViewsFactory(Context context, Intent intent) {
         mContext = context;
-       /* Handler handler = new Handler(Looper.getMainLooper());
-        handler.post(new Runnable() {
-            @Override
-            public void run() {
-                Realm realm = Realm.getDefaultInstance();
-                expenses = realm.where(Expense.class)
-                        .greaterThan(RealmTable.DATE, MonthTimeStamp.getStartTimeStamp(new Date()))
-                        .lessThanOrEqualTo(RealmTable.DATE, MonthTimeStamp.getEndTimeStamp(new Date())).findAll();
-            }
-        });*/
     }
 
     public void onCreate() {
@@ -52,32 +35,49 @@ class StackRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
     }
 
     public int getCount() {
-        return expenses.size();
+        return cursor.getCount();
     }
 
     public RemoteViews getViewAt(int position) {
+        cursor.moveToFirst();
 
-        RemoteViews rv = new RemoteViews(mContext.getPackageName(), R.layout.widget_item);
-        rv.setTextViewText(R.id.tv_expense_title, expenses.get(position).getExpenseTitle());
-        rv.setInt(R.id.iv_categories_indicator, "setBackgroundResource", Color.parseColor(expenses.get(position).getExpenseCategories().getCategoriesColor()));
-        rv.setTextViewText(R.id.tv_price, expenses.get(position).getExpenseTitle());
+        final RemoteViews rv = new RemoteViews(mContext.getPackageName(), R.layout.widget_item);
+        rv.setTextViewText(R.id.tv_weather_description, cursor.getString(cursor.getColumnIndex(ExpenseTrackerContract.WeatherEntry.COLUMNS_DESCRIPTION)));
+
+        Timber.d("weather condition %s", cursor.getString(cursor.getColumnIndex(ExpenseTrackerContract.WeatherEntry.COLUMNS_DESCRIPTION)));
+        double maxTemp = cursor.getDouble(cursor.getColumnIndex(ExpenseTrackerContract.WeatherEntry.COLUMNS_TEMP_MAX));
+        double minTemp = cursor.getDouble(cursor.getColumnIndex(ExpenseTrackerContract.WeatherEntry.COLUMNS_TEMP_MIN));
+
+        rv.setTextViewText(R.id.tv_max_min_temp, String.format("H %.0f\u2103 : L %.0f\u2103", maxTemp, minTemp));
+
+       /* Glide.with(mContext)
+                .load(Constant.WEATHER_CONDITION_IMAGE_URL)
+                .asBitmap()
+                .into(new BitmapImageViewTarget()
+                {
+                    @Override
+                    protected void setResource(Bitmap resource) {
+                        super.setResource(resource);
+                    }
+                });
+        rv.setImageViewBitmap(R.id.iv_weather_condition_icon, resource);*/
 
         // Next, we set a fill-intent which will be used to fill-in the pending intent template
         // which is set on the collection view in StackWidgetProvider.
 
         Intent fillInIntent = new Intent(mContext, LoginActivity.class);
-        rv.setOnClickFillInIntent(R.id.card_view, fillInIntent);
+        rv.setOnClickFillInIntent(R.id.container, fillInIntent);
 
         // You can do heaving lifting in here, synchronously. For example, if you need to
         // process an image, fetch something from the network, etc., it is ok to do it here,
         // synchronously. A loading view will show up in lieu of the actual contents in the
         // interim.
-       /* try {
+        try {
             System.out.println("Loading view " + position);
-            //Thread.sleep(500);
+            Thread.sleep(500);
         } catch (InterruptedException e) {
             e.printStackTrace();
-        }*/
+        }
 
         // Return the remote views object.
         return rv;
@@ -106,18 +106,7 @@ class StackRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
         //http://stackoverflow.com/questions/13187284/android-permission-denial-in-widget-remoteviewsfactory-for-content
         final long token = Binder.clearCallingIdentity();
         try {
-            Handler handler = new Handler(Looper.getMainLooper());
-            handler.post(new Runnable() {
-                @Override
-                public void run() {
-                    Realm realm = Realm.getDefaultInstance();
-                    expenses = realm.where(Expense.class)
-                            .greaterThan(RealmTable.DATE, MonthTimeStamp.getStartTimeStamp(new Date()))
-                            .lessThanOrEqualTo(RealmTable.DATE, MonthTimeStamp.getEndTimeStamp(new Date())).findAll();
-                    realm.close();
-                }
-            });
-
+            cursor = mContext.getContentResolver().query(ExpenseTrackerContract.WeatherEntry.CONTENT_URI, null, null, null, null);
         } finally {
             Binder.restoreCallingIdentity(token);
         }

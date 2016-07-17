@@ -30,7 +30,6 @@ import com.example.rajesh.udacitycapstoneproject.realm.table.RealmTable;
 import com.example.rajesh.udacitycapstoneproject.rest.IExpenseTrackerService;
 import com.example.rajesh.udacitycapstoneproject.rest.model.CurrentDayWeather;
 import com.example.rajesh.udacitycapstoneproject.utils.AlarmUtil;
-import com.example.rajesh.udacitycapstoneproject.weather.WeatherActivity;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -114,7 +113,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        startActivity(new Intent(this, WeatherActivity.class));
+        //startActivity(new Intent(this, WeatherActivity.class));
         mRealm = Realm.getDefaultInstance();
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
         ExpenseTrackerApp.getExpenseTrackerComponent().inject(this);
