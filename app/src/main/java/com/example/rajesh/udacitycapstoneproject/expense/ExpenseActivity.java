@@ -265,4 +265,9 @@ public class ExpenseActivity extends ToolbarBaseActivity {
         return expense;
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mRealm.close();
+    }
 }

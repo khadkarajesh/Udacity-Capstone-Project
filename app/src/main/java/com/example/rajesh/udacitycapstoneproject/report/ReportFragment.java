@@ -247,4 +247,9 @@ public class ReportFragment extends BaseFragment implements OnChartValueSelected
         return s;
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mRealm.close();
+    }
 }

@@ -6,8 +6,10 @@ public class Constant {
     public static final String APP_LAUNCH = "app_launch";
     public static final String RECURRING_EXPENSE_NOTIFICATION = "recurring_expense_notification";
     public static final String RECURRING_ACCOUNT_NOTIFICATION = "recurring_account_notification";
-    public static final String ADD_RECURRING_EXPENSE_ACTION="com.example.rajesh.udacitycapstoneproject.recurring.expense";
-    public static final String ADD_RECURRING_ACCOUNT_ACTION="com.example.rajesh.udacitycapstoneproject.recurring.account";
+    public static final String ADD_RECURRING_EXPENSE_ACTION = "com.example.rajesh.udacitycapstoneproject.recurring.expense";
+    public static final String ADD_RECURRING_ACCOUNT_ACTION = "com.example.rajesh.udacitycapstoneproject.recurring.account";
+
+    public static final String WEATHER_CONDITION_IMAGE_URL = "http://openweathermap.org/img/w/";
 
 
     public static final String EXPENSE = "expense";

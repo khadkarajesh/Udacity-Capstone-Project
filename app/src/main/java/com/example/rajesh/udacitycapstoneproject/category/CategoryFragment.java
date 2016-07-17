@@ -79,4 +79,9 @@ public class CategoryFragment extends BaseFragment {
         mRealm.commitTransaction();
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mRealm.close();
+    }
 }
