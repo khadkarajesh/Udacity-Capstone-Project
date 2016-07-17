@@ -17,7 +17,7 @@ public class ExpenseTrackerContract {
         public static final String CONTENT_TYPE = ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + WEATHER_PATH;
 
         public static final String TABLE_NAME = "weather";
-
+        public static final String COLUMNS_TEMP = "temp";
         public static final String COLUMNS_TEMP_MIN = "temp_min";
         public static final String COLUMNS_TEMP_MAX = "temp_max";
         public static final String COLUMNS_HUMIDITY = "humidity";

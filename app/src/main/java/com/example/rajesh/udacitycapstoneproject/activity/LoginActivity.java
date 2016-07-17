@@ -30,6 +30,7 @@ import com.example.rajesh.udacitycapstoneproject.realm.table.RealmTable;
 import com.example.rajesh.udacitycapstoneproject.rest.IExpenseTrackerService;
 import com.example.rajesh.udacitycapstoneproject.rest.model.CurrentDayWeather;
 import com.example.rajesh.udacitycapstoneproject.utils.AlarmUtil;
+import com.example.rajesh.udacitycapstoneproject.weather.WeatherActivity;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -113,7 +114,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        //startActivity(new Intent(this, TestActivity.class));
+        startActivity(new Intent(this, WeatherActivity.class));
         mRealm = Realm.getDefaultInstance();
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
         ExpenseTrackerApp.getExpenseTrackerComponent().inject(this);
@@ -419,6 +420,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
 
     private void saveWeather(CurrentDayWeather currentDayWeather) {
         ContentValues contentValues = new ContentValues();
+        contentValues.put(ExpenseTrackerContract.WeatherEntry.COLUMNS_TEMP,currentDayWeather.main.temp);
         contentValues.put(ExpenseTrackerContract.WeatherEntry.COLUMNS_DESCRIPTION, currentDayWeather.weather.get(0).description);
         contentValues.put(ExpenseTrackerContract.WeatherEntry.COLUMNS_WEATHER_ICON, currentDayWeather.weather.get(0).icon);
         contentValues.put(ExpenseTrackerContract.WeatherEntry.COLUMNS_HUMIDITY, currentDayWeather.main.humidity);

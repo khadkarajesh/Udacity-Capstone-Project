@@ -20,6 +20,7 @@ public class ExpenseTrackerDbHelper extends SQLiteOpenHelper {
         final String CREATE_ACCOUNT_TABLE = "CREATE TABLE " + ExpenseTrackerContract.WeatherEntry.TABLE_NAME
                 + "("
                 + ExpenseTrackerContract.WeatherEntry._ID + " INTEGER PRIMARY KEY,"
+                + ExpenseTrackerContract.WeatherEntry.COLUMNS_TEMP + " REAL NOT NULL,"
                 + ExpenseTrackerContract.WeatherEntry.COLUMNS_TEMP_MIN + " REAL NOT NULL,"
                 + ExpenseTrackerContract.WeatherEntry.COLUMNS_TEMP_MAX + " REAL NOT NULL,"
                 + ExpenseTrackerContract.WeatherEntry.COLUMNS_HUMIDITY + " REAL NOT NULL,"
