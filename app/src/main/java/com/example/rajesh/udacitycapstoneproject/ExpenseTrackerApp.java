@@ -36,6 +36,8 @@ public class ExpenseTrackerApp extends Application {
                 .builder()
                 .networkModule(new NetworkModule())
                 .build();
+
+        Stetho.initializeWithDefaults(this);
     }
 
     private void initializeHawk() {

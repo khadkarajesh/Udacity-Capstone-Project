@@ -1,10 +1,18 @@
 package com.example.rajesh.udacitycapstoneproject.activity;
 
+import android.Manifest;
+import android.content.ContentUris;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.location.Location;
+import android.location.LocationManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -12,10 +20,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.rajesh.udacitycapstoneproject.BuildConfig;
 import com.example.rajesh.udacitycapstoneproject.Constant;
+import com.example.rajesh.udacitycapstoneproject.ExpenseTrackerApp;
 import com.example.rajesh.udacitycapstoneproject.R;
+import com.example.rajesh.udacitycapstoneproject.data.ExpenseTrackerContract;
 import com.example.rajesh.udacitycapstoneproject.realm.ExpenseCategories;
 import com.example.rajesh.udacitycapstoneproject.realm.table.RealmTable;
+import com.example.rajesh.udacitycapstoneproject.rest.IExpenseTrackerService;
+import com.example.rajesh.udacitycapstoneproject.rest.model.CurrentDayWeather;
 import com.example.rajesh.udacitycapstoneproject.utils.AlarmUtil;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
@@ -33,6 +46,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.analytics.FirebaseAnalytics;
@@ -47,16 +61,24 @@ import com.orhanobut.hawk.Hawk;
 import java.util.Arrays;
 import java.util.Random;
 
+import javax.inject.Inject;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import io.realm.Realm;
+import retrofit.Call;
+import retrofit.Callback;
+import retrofit.Response;
+import retrofit.Retrofit;
+import timber.log.Timber;
 
 public class LoginActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
     private static final int FIRST_DATA_ITEM_ID = 1;
     private static final int ID_INCREMENTER = 1;
     public static final int GOOGLE_SIGN_IN_CODE = 5000;
     private static final String TAG = LoginActivity.class.getSimpleName();
+    private static final int MY_PERMISSIONS_REQUEST_LOCATION = 200;
 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
@@ -81,6 +103,11 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
 
     private Realm mRealm = null;
     private FirebaseAnalytics mFirebaseAnalytics;
+    private LocationManager lm;
+    private double longitude;
+    private double latitude;
+    @Inject
+    IExpenseTrackerService iExpenseTrackerService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,6 +116,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         //startActivity(new Intent(this, TestActivity.class));
         mRealm = Realm.getDefaultInstance();
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+        ExpenseTrackerApp.getExpenseTrackerComponent().inject(this);
 
         AlarmUtil.setAlarm(this);
 
@@ -124,6 +152,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .enableAutoManage(this, this)
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
+                .addApi(LocationServices.API)
                 .build();
 
 
@@ -212,9 +241,8 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                             Toast.makeText(LoginActivity.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
                         } else {
-                            startActivity(DashBoardActivity.getLaunchIntent(LoginActivity.this));
+                            getLocation();
                             trackLogin(getString(R.string.google));
-                            finish();
                         }
                     }
                 });
@@ -286,9 +314,8 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
-                    startActivity(DashBoardActivity.getLaunchIntent(LoginActivity.this));
+                    getLocation();
                     trackLogin(getString(R.string.login_via_email));
-                    finish();
                 } else {
                     Toast.makeText(LoginActivity.this, "Couldn't login", Toast.LENGTH_SHORT).show();
                 }
@@ -306,8 +333,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                             Toast.makeText(LoginActivity.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
                         } else {
-                            startActivity(DashBoardActivity.getLaunchIntent(LoginActivity.this));
-                            finish();
+                            getLocation();
                             trackLogin(getString(R.string.facebook));
                         }
                     }
@@ -340,4 +366,74 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, getString(R.string.sign_in));
         mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);
     }
+
+    private void navigateToDashboard() {
+        startActivity(DashBoardActivity.getLaunchIntent(LoginActivity.this));
+        finish();
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if (requestCode == MY_PERMISSIONS_REQUEST_LOCATION) {
+            Timber.d("permission called here");
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                    Toast.makeText(LoginActivity.this, "permission allowed", Toast.LENGTH_SHORT).show();
+                    getLocation();
+                }
+            }
+        } else {
+            super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
+    }
+
+    private void getLocation() {
+        lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, MY_PERMISSIONS_REQUEST_LOCATION);
+        } else {
+            Location mLastLocation = LocationServices.FusedLocationApi.getLastLocation(
+                    mGoogleApiClient);
+            if (mLastLocation != null) {
+                latitude = mLastLocation.getLatitude();
+                longitude = mLastLocation.getLongitude();
+            }
+        }
+        fetchWeatherData();
+    }
+
+    private void fetchWeatherData() {
+        Call<CurrentDayWeather> currentDayWeatherCall = iExpenseTrackerService.getCurrentDayWetherInfo(String.valueOf(latitude), String.valueOf(longitude), BuildConfig.WEATHER_API_KEY);
+        currentDayWeatherCall.enqueue(new Callback<CurrentDayWeather>() {
+            @Override
+            public void onResponse(Response<CurrentDayWeather> response, Retrofit retrofit) {
+                saveWeather(response.body());
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+
+            }
+        });
+    }
+
+    private void saveWeather(CurrentDayWeather currentDayWeather) {
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(ExpenseTrackerContract.WeatherEntry.COLUMNS_DESCRIPTION, currentDayWeather.weather.get(0).description);
+        contentValues.put(ExpenseTrackerContract.WeatherEntry.COLUMNS_WEATHER_ICON, currentDayWeather.weather.get(0).icon);
+        contentValues.put(ExpenseTrackerContract.WeatherEntry.COLUMNS_HUMIDITY, currentDayWeather.main.humidity);
+        contentValues.put(ExpenseTrackerContract.WeatherEntry.COLUMNS_PRESSURE, currentDayWeather.main.pressure);
+        contentValues.put(ExpenseTrackerContract.WeatherEntry.COLUMNS_TEMP_MIN, currentDayWeather.main.temp_min);
+        contentValues.put(ExpenseTrackerContract.WeatherEntry.COLUMNS_TEMP_MAX, currentDayWeather.main.temp_max);
+        contentValues.put(ExpenseTrackerContract.WeatherEntry.COLUMNS_SUNRISE, currentDayWeather.sys.sunrise);
+        contentValues.put(ExpenseTrackerContract.WeatherEntry.COLUMNS_SUNSET, currentDayWeather.sys.sunset);
+
+        getContentResolver().delete(ExpenseTrackerContract.WeatherEntry.CONTENT_URI, null, null);
+
+        Uri uri = getContentResolver().insert(ExpenseTrackerContract.WeatherEntry.CONTENT_URI, contentValues);
+        if (ContentUris.parseId(uri) > 0) {
+            navigateToDashboard();
+        }
+    }
 }
+
