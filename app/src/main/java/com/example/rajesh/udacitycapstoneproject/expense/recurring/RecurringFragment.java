@@ -93,4 +93,10 @@ public class RecurringFragment extends BaseFragment {
     public void onClick() {
         getActivity().startActivity(ExpenseActivity.getLaunchIntent(getActivity(), null));
     }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mRealm.close();
+    }
 }

@@ -212,4 +212,9 @@ public class AccountActivity extends ToolbarBaseActivity {
         return intent;
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mRealm.close();
+    }
 }

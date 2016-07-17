@@ -11,15 +11,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.rajesh.udacitycapstoneproject.Constant;
 import com.example.rajesh.udacitycapstoneproject.R;
 import com.example.rajesh.udacitycapstoneproject.base.activity.BaseActivity;
 import com.example.rajesh.udacitycapstoneproject.data.ExpenseTrackerContract;
 
 import butterknife.Bind;
-import timber.log.Timber;
 
 public class WeatherActivity extends BaseActivity implements LoaderManager.LoaderCallbacks<Cursor> {
-    private static final String WEATHER_CONDITION_IMAGE_URL = "http://openweathermap.org/img/w/";
+
+
     @Bind(R.id.tv_time)
     TextView tvTime;
 
@@ -68,7 +69,7 @@ public class WeatherActivity extends BaseActivity implements LoaderManager.Loade
         tvHumidity.setText(String.format("Humidity: %.0f", data.getDouble(data.getColumnIndex(ExpenseTrackerContract.WeatherEntry.COLUMNS_HUMIDITY))));
         tvPressure.setText(String.format("Pressure: %.0f", data.getDouble(data.getColumnIndex(ExpenseTrackerContract.WeatherEntry.COLUMNS_PRESSURE))));
         tvTemp.setText(String.format("%.0f\u2103", data.getDouble(data.getColumnIndex(ExpenseTrackerContract.WeatherEntry.COLUMNS_TEMP))));
-        Glide.with(this).load(WEATHER_CONDITION_IMAGE_URL + data.getString(data.getColumnIndex(ExpenseTrackerContract.WeatherEntry.COLUMNS_WEATHER_ICON))+".png").into(ivWeatherConditionIcon);
+        Glide.with(this).load(Constant.WEATHER_CONDITION_IMAGE_URL + data.getString(data.getColumnIndex(ExpenseTrackerContract.WeatherEntry.COLUMNS_WEATHER_ICON)) + ".png").into(ivWeatherConditionIcon);
         double maxTemp = data.getDouble(data.getColumnIndex(ExpenseTrackerContract.WeatherEntry.COLUMNS_TEMP_MAX));
         double minTemp = data.getDouble(data.getColumnIndex(ExpenseTrackerContract.WeatherEntry.COLUMNS_TEMP_MIN));
         tvMaxMinTemp.setText(String.format("H %.0f\u2103 : L %.0f\u2103", maxTemp, minTemp));

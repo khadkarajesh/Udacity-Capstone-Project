@@ -62,6 +62,17 @@
         <activity android:name=".TestActivity">
         </activity>
 
+        <receiver
+            android:name=".ExpenseTrackerWidget"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/expense_widget"/>
+        </receiver>
+
         <provider
             android:name=".data.ExpenseTrackerProvider"
             android:authorities="com.example.rajesh.udacitycapstoneproject"
@@ -72,6 +83,7 @@
             android:name=".weather.WeatherActivity"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
+
     </application>
 
 </manifest>
