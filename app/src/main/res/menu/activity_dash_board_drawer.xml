@@ -22,6 +22,10 @@
             android:id="@+id/nav_history_report"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="History/Report"/>
+        <item
+            android:id="@+id/nav_weather"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Weather"/>
 
         <item
             android:id="@+id/nav_settings"
