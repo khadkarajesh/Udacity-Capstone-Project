@@ -4,5 +4,5 @@ It's a capstone project for Udacity  Android Nanodegree.
 
 ## Expense Tracker
 
-Tracks Periodic expenses of user
-Shows history in periodic manner
+1. Tracks Periodic expenses of user
+2. Shows history in periodic manner
